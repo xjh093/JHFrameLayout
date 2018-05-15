@@ -203,9 +203,24 @@
 
 #pragma mark - private
 
-- (void)xx_topIs:(CGFloat)offsetY fromView:(UIView *)view add:(CGFloat)increment updateHeight:(BOOL)flag{
+- (CGPoint)xx_originConvertFromView:(UIView *)view{
+    
+    NSSet *set1 = [self allSuperViewOfView:view];
+    NSSet *set2 = [self allSuperViewOfView:self];
+    
     UIView *superView = view.superview ? view.superview : view;
     CGPoint origin = [superView convertPoint:view.frame.origin toView:self.superview];
+    
+    // When 'view' and 'self' has no common superview, use view's origin.
+    if (![set1 intersectsSet:set2]) {
+        origin = view.frame.origin;
+    }
+    
+    return origin;
+}
+
+- (void)xx_topIs:(CGFloat)offsetY fromView:(UIView *)view add:(CGFloat)increment updateHeight:(BOOL)flag{
+    CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     frame.origin.y = origin.y + offsetY + increment;
     if (flag) {
@@ -218,8 +233,7 @@
 }
 
 - (void)xx_leftIs:(CGFloat)offsetX fromView:(UIView *)view add:(CGFloat)increment updateWidth:(BOOL)flag{
-    UIView *superView = view.superview ? view.superview : view;
-    CGPoint origin = [superView convertPoint:view.frame.origin toView:self.superview];
+    CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     frame.origin.x = origin.x + offsetX + increment;
     if (flag) {
@@ -232,8 +246,7 @@
 }
 
 - (void)xx_bottomIs:(CGFloat)offsetY fromView:(UIView *)view add:(CGFloat)increment updateHeight:(BOOL)flag{
-    UIView *superView = view.superview ? view.superview : view;
-    CGPoint origin = [superView convertPoint:view.frame.origin toView:self.superview];
+    CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
         frame.size.height = origin.y + view.frame.size.height + offsetY + increment - self.frame.origin.y;
@@ -244,8 +257,7 @@
 }
 
 - (void)xx_rightIs:(CGFloat)offsetX fromView:(UIView *)view add:(CGFloat)increment updateWidth:(BOOL)flag{
-    UIView *superView = view.superview ? view.superview : view;
-    CGPoint origin = [superView convertPoint:view.frame.origin toView:self.superview];
+    CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
         frame.size.width = origin.x + view.frame.size.width + offsetX + increment - self.frame.origin.x;
@@ -256,8 +268,7 @@
 }
 
 - (void)xx_centerXIs:(CGFloat)offsetX fromView:(UIView *)view type:(NSInteger)type updateWidth:(BOOL)flag{
-    UIView *superView = view.superview ? view.superview : view;
-    CGPoint origin = [superView convertPoint:view.frame.origin toView:self.superview];
+    CGPoint origin = [self xx_originConvertFromView:view];
     CGFloat centerX = CGRectGetMidX(self.frame);
     if (0 == type) { // left
         if (centerX <= origin.x) {
@@ -281,8 +292,7 @@
 }
 
 - (void)xx_centerYIs:(CGFloat)offsetY fromView:(UIView *)view type:(NSInteger)type updateHeight:(BOOL)flag{
-    UIView *superView = view.superview ? view.superview : view;
-    CGPoint origin = [superView convertPoint:view.frame.origin toView:self.superview];
+    CGPoint origin = [self xx_originConvertFromView:view];
     CGFloat centerY = CGRectGetMidY(self.frame);
     if (0 == type) { // top
         if (centerY <= origin.y) {
@@ -303,6 +313,18 @@
             [self jh_topIs:-self.frame.size.height*0.5+offsetY fromBottomOfView:view updateHeight:flag];
         }
     }
+}
+
+- (NSSet *)allSuperViewOfView:(UIView *)view
+{
+    NSMutableArray *marr = @[].mutableCopy;
+    UIView *superview = view.superview;
+    while (superview) {
+        [marr addObject:superview];
+        superview = superview.superview;
+    }
+    // NSLog(@"allSuperViewOfView:%@",marr);
+    return [NSSet setWithArray:marr];
 }
 
 @end
