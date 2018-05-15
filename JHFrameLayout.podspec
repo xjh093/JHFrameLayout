@@ -1,8 +1,7 @@
-
 Pod::Spec.new do |s|
   s.name         = 'JHFrameLayout'
   s.summary      = 'A simple methods for frame layout.'
-  s.version      = '1.0.1'
+  s.version      = '1.1.0'
   s.license      = { :type => 'MIT'}
   s.authors      = { 'Haocold' => 'xjh093@126.com' }
   s.homepage     = 'https://github.com/xjh093/JHFrameLayout'
