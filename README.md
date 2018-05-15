@@ -1,6 +1,17 @@
 # JHFrameLayout
 ### frame layout
 
+## Logs
+
+### 2018-5-15
+1.fix bug: when there is no common superview.
+
+### 2018-1-17
+1.upload.
+
+---
+
+## API
 ```
 // size,center,origin
 - (void)jh_sizeIs:(CGSize)size;
