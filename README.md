@@ -3,6 +3,9 @@
 
 ## Logs
 
+### 2018-5-28
+1.fix bug: jh_rightIs: jh_bottomIs:
+
 ### 2018-5-15
 1.fix bug: when there is no common superview.
 
