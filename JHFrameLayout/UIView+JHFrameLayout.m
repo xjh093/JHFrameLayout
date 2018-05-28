@@ -125,7 +125,7 @@
 - (void)jh_bottomIs:(CGFloat)bottom{
     if (self.superview) {
         CGRect frame = self.frame;
-        frame.origin.y = self.superview.frame.size.height - bottom - frame.size.height;
+        frame.origin.y = self.superview.frame.size.height + bottom - frame.size.height;
         self.frame = frame;
     }
 }
@@ -146,7 +146,7 @@
 - (void)jh_rightIs:(CGFloat)right{
     if (self.superview) {
         CGRect frame = self.frame;
-        frame.origin.x = self.superview.frame.size.width - right - frame.size.width;
+        frame.origin.x = self.superview.frame.size.width + right - frame.size.width;
         self.frame = frame;
     }
 }
