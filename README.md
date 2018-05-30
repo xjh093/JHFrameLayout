@@ -43,7 +43,7 @@ A autolayout base on 'frame'.
 
 ```
 
-### More details in 
+### More details in Demo
 
 ---
 
