@@ -65,7 +65,7 @@
 - (void)jh_leftIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag;
 
 
-/// bottom space in super view
+/// bottom space in super view,if 'height' > 0, 'y' will be modified,otherwise modify 'height'.
 - (void)jh_bottomIs:(CGFloat)bottom;
 // if flag is YES, will update height to keep top space
 - (void)jh_bottomIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view updateHeight:(BOOL)flag;
@@ -73,7 +73,7 @@
 - (void)jh_bottomIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag;
 
 
-/// right space to super view
+/// right space to super view,if 'width' > 0, 'x' will be modified,otherwise modify 'width'.
 - (void)jh_rightIs:(CGFloat)right;
 // if flag is YES, will update width to keep left space
 - (void)jh_rightIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag;

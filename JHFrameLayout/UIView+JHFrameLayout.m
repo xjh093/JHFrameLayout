@@ -125,7 +125,11 @@
 - (void)jh_bottomIs:(CGFloat)bottom{
     if (self.superview) {
         CGRect frame = self.frame;
-        frame.origin.y = self.superview.frame.size.height + bottom - frame.size.height;
+        if (frame.size.height > 0) {
+            frame.origin.y = self.superview.frame.size.height + bottom - frame.size.height;
+        }else{
+            frame.size.height = self.superview.frame.size.height + bottom - frame.origin.y;
+        }
         self.frame = frame;
     }
 }
@@ -146,7 +150,11 @@
 - (void)jh_rightIs:(CGFloat)right{
     if (self.superview) {
         CGRect frame = self.frame;
-        frame.origin.x = self.superview.frame.size.width + right - frame.size.width;
+        if (frame.size.width > 0) {
+            frame.origin.x = self.superview.frame.size.width + right - frame.size.width;
+        }else{
+            frame.size.width = self.superview.frame.size.width + right - frame.origin.x;
+        }
         self.frame = frame;
     }
 }
@@ -222,12 +230,14 @@
 - (void)xx_topIs:(CGFloat)offsetY fromView:(UIView *)view add:(CGFloat)increment updateHeight:(BOOL)flag{
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
-    frame.origin.y = origin.y + offsetY + increment;
     if (flag) {
-        frame.size.height -= offsetY;
+        frame.size.height = frame.origin.y + frame.size.height - offsetY;
+        frame.origin.y = origin.y + offsetY + increment;
         if (frame.size.height < 0) {
             frame.size.height = 0;
         }
+    }else{
+        frame.origin.y = origin.y + offsetY + increment;
     }
     self.frame = frame;
 }
@@ -235,12 +245,14 @@
 - (void)xx_leftIs:(CGFloat)offsetX fromView:(UIView *)view add:(CGFloat)increment updateWidth:(BOOL)flag{
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
-    frame.origin.x = origin.x + offsetX + increment;
     if (flag) {
-        frame.size.width -= offsetX;
+        frame.size.width = frame.origin.x + frame.size.width - offsetX;
+        frame.origin.x = origin.x + offsetX + increment;
         if (frame.size.width < 0) {
             frame.size.width = 0;
         }
+    }else{
+        frame.origin.x = origin.x + offsetX + increment;
     }
     self.frame = frame;
 }
