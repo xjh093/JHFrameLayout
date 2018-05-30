@@ -1,16 +1,49 @@
 # JHFrameLayout
 ### frame layout
 
+## What is it?
+A autolayout base on 'frame'.
+
+---
+
 ## Logs
 
+### 2018-5-30
+#### 1.chainable & autolayout.
+#### 2.fix bugs.
+
 ### 2018-5-28
-1.fix bug: jh_rightIs: jh_bottomIs:
+#### 1.fix bug: jh_rightIs: jh_bottomIs:
 
 ### 2018-5-15
-1.fix bug: when there is no common superview.
+#### 1.fix bug: when there is no common superview.
 
 ### 2018-1-17
-1.upload.
+#### 1.upload.
+
+---
+
+## USE
+
+```
+- (void)loadView{
+
+    self.view = [[JHFrameLayoutView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    UIView *view1 = [[UIView alloc] init];
+    view1.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:view1];
+    
+    view1.jhLayout
+    .topOffsetBottomOfView(10, self.navigationController.navigationBar, NO)
+    .leftIs(10)
+    .bottomOffsetMiddleOfView(-50, self.view, YES)
+    .rightOffsetMiddleOfView(-5, self.view, YES);
+}
+
+```
+
+### More details in 
 
 ---
 
@@ -50,7 +83,7 @@
 - (void)jh_leftIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag;
 
 
-/// bottom space in super view
+/// bottom space in super view,if 'height' > 0, 'y' will be modified,otherwise modify 'height'.
 - (void)jh_bottomIs:(CGFloat)bottom;
 // if flag is YES, will update height to keep top space
 - (void)jh_bottomIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view updateHeight:(BOOL)flag;
@@ -58,7 +91,7 @@
 - (void)jh_bottomIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag;
 
 
-/// right space to super view
+/// right space to super view,if 'width' > 0, 'x' will be modified,otherwise modify 'width'.
 - (void)jh_rightIs:(CGFloat)right;
 // if flag is YES, will update width to keep left space
 - (void)jh_rightIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag;
