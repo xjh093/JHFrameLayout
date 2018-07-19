@@ -203,7 +203,11 @@
 }
 
 - (void)jh_centerXIsEqualToView:(UIView *)view{
-    [self jh_centerXIs:CGRectGetMidX(view.frame)];
+    if (self.superview == view) {
+        [self jh_centerXIs:CGRectGetWidth(view.frame)*0.5];
+    }else{
+        [self jh_centerXIs:CGRectGetMidX(view.frame)];
+    }
 }
 
 - (void)jh_centerXIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag{
@@ -226,7 +230,11 @@
 }
 
 - (void)jh_centerYIsEqualToView:(UIView *)view{
-    [self jh_centerYIs:CGRectGetMidY(view.frame)];
+    if (self.superview == view) {
+        [self jh_centerYIs:CGRectGetHeight(view.frame)*0.5];
+    }else{
+        [self jh_centerYIs:CGRectGetMidY(view.frame)];
+    }
 }
 
 - (void)jh_centerYIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag{
