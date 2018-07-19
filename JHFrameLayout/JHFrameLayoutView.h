@@ -38,6 +38,8 @@ typedef JHLayout *(^JHLayoutCenter)(CGPoint center);
 
 typedef JHLayout *(^JHLayoutWidth)(CGFloat width);
 typedef JHLayout *(^JHLayoutHeight)(CGFloat height);
+typedef JHLayout *(^JHLayoutWidthEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutHeightEqualToView)(UIView *view);
 typedef JHLayout *(^JHLayoutRatioOfViewWidth)(CGFloat ratio, UIView *view);
 typedef JHLayout *(^JHLayoutRatioOfViewHeight)(CGFloat ratio, UIView *view);
 
@@ -47,6 +49,12 @@ typedef JHLayout *(^JHLayoutBottom)(CGFloat offsetY);
 typedef JHLayout *(^JHLayoutRight)(CGFloat offsetX);
 typedef JHLayout *(^JHLayoutCenterX)(CGFloat offsetX);
 typedef JHLayout *(^JHLayoutCenterY)(CGFloat offsetY);
+typedef JHLayout *(^JHLayoutTopEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutLeftEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutBottomEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutRightEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutCenterXEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutCenterYEqualToView)(UIView *view);
 
 typedef JHLayout *(^JHLayoutTopOfView)(CGFloat offsetY, UIView *view, BOOL update);
 typedef JHLayout *(^JHLayoutLeftOfView)(CGFloat offsetX, UIView *view, BOOL update);
@@ -65,16 +73,19 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 
 // width
 @property (nonatomic, copy, readonly) JHLayoutWidth  widthIs;
+@property (nonatomic, copy, readonly) JHLayoutWidthEqualToView  widthIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutRatioOfViewWidth  widthIsRatioOfViewWidth;
 @property (nonatomic, copy, readonly) JHLayoutRatioOfViewHeight widthIsRatioOfViewHeight;
 
 // height
 @property (nonatomic, copy, readonly) JHLayoutHeight heightIs;
+@property (nonatomic, copy, readonly) JHLayoutHeightEqualToView heightIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutRatioOfViewWidth  heightIsRatioOfViewWidth;
 @property (nonatomic, copy, readonly) JHLayoutRatioOfViewHeight heightIsRatioOfViewHeight;
 
 // top space in super view
 @property (nonatomic, copy, readonly) JHLayoutTop topIs;
+@property (nonatomic, copy, readonly) JHLayoutTopEqualToView topIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutTopOfView topOffsetTopOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView topOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutBottomOfView topOffsetBottomOfView;
@@ -82,6 +93,7 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 
 // left space in super view
 @property (nonatomic, copy, readonly) JHLayoutLeft leftIs;
+@property (nonatomic, copy, readonly) JHLayoutLeftEqualToView leftIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutLeftOfView leftOffsetLeftOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView leftOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutRightOfView leftOffsetRightOfView;
@@ -89,24 +101,28 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 
 // bottom space in super view
 @property (nonatomic, copy, readonly) JHLayoutBottom bottomIs;
+@property (nonatomic, copy, readonly) JHLayoutBottomEqualToView bottomIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutTopOfView bottomOffsetTopOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView bottomOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutBottomOfView bottomOffsetBottomOfView;
 
 // right space to super view
 @property (nonatomic, copy, readonly) JHLayoutRight rightIs;
+@property (nonatomic, copy, readonly) JHLayoutRightEqualToView rightIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutLeftOfView rightOffsetLeftOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView rightOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutRightOfView rightOffsetRightOfView;
 
 // center X
 @property (nonatomic, copy, readonly) JHLayoutCenterX centerXIs;
+@property (nonatomic, copy, readonly) JHLayoutCenterXEqualToView centerXIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutLeftOfView centerXOffsetLeftOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView centerXOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutRightOfView centerXOffsetRightOfView;
 
 /// center Y
 @property (nonatomic, copy, readonly) JHLayoutCenterY centerYIs;
+@property (nonatomic, copy, readonly) JHLayoutCenterYEqualToView centerYIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutTopOfView centerYOffsetTopOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView centerYOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutBottomOfView centerYOffsetBottomOfView;
