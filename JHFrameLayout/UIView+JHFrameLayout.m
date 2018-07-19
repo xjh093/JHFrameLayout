@@ -60,6 +60,10 @@
     self.frame = frame;
 }
 
+- (void)jh_widthIsEqualToView:(UIView *)view{
+    [self jh_widthIs:1 ratioOfViewWidth:view];
+}
+
 - (void)jh_widthIs:(CGFloat)ratio ratioOfViewWidth:(UIView *)view{
     [self jh_widthIs:view.frame.size.width * ratio];
 }
@@ -75,6 +79,10 @@
     self.frame = frame;
 }
 
+- (void)jh_heightIsEqualToView:(UIView *)view{
+    [self jh_heightIs:1 ratioOfViewHeight:view];
+}
+
 - (void)jh_heightIs:(CGFloat)ratio ratioOfViewWidth:(UIView *)view{
     [self jh_heightIs:view.frame.size.width * ratio];
 }
@@ -88,6 +96,10 @@
     CGRect frame = self.frame;
     frame.origin.y = top;
     self.frame = frame;
+}
+
+- (void)jh_topIsEqualToView:(UIView *)view{
+    [self jh_topIs:CGRectGetMinY(view.frame)];
 }
 
 - (void)jh_topIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag{
@@ -107,6 +119,10 @@
     CGRect frame = self.frame;
     frame.origin.x = left;
     self.frame = frame;
+}
+
+- (void)jh_leftIsEqualToView:(UIView *)view{
+    [self jh_leftIs:CGRectGetMinX(view.frame)];
 }
 
 - (void)jh_leftIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag{
@@ -134,6 +150,10 @@
     }
 }
 
+- (void)jh_bottomIsEqualToView:(UIView *)view{
+    [self jh_bottomIs:CGRectGetMaxY(view.frame)];
+}
+
 - (void)jh_bottomIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view updateHeight:(BOOL)flag{
     [self xx_bottomIs:offsetY fromView:view add:0 updateHeight:flag];
 }
@@ -159,6 +179,10 @@
     }
 }
 
+- (void)jh_rightIsEqualToView:(UIView *)view{
+    [self jh_rightIs:CGRectGetMaxX(view.frame)];
+}
+
 - (void)jh_rightIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag{
     [self xx_rightIs:offsetX fromView:view add:0 updateWidth:flag];
 }
@@ -178,6 +202,10 @@
     self.center = center;
 }
 
+- (void)jh_centerXIsEqualToView:(UIView *)view{
+    [self jh_centerXIs:CGRectGetMidX(view.frame)];
+}
+
 - (void)jh_centerXIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag{
     [self xx_centerXIs:offsetX fromView:view type:0 updateWidth:flag];
 }
@@ -195,6 +223,10 @@
     CGPoint center = self.center;
     center.y = centerY;
     self.center = center;
+}
+
+- (void)jh_centerYIsEqualToView:(UIView *)view{
+    [self jh_centerYIs:CGRectGetMidY(view.frame)];
 }
 
 - (void)jh_centerYIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag{
