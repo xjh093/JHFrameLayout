@@ -108,12 +108,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutWidthEqualToView)widthIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_widthIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutRatioOfViewWidth)widthIsRatioOfViewWidth{
     return ^(CGFloat ratio, UIView *view){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_widthIs:ratio ratioOfViewWidth:view];
+            [ws.layoutView jh_widthIs:ratio ratioOfViewWidth:wkview];
         };
         [self.layoutArray addObject:block];
         
@@ -125,8 +140,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat ratio, UIView *view){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_widthIs:ratio ratioOfViewHeight:view];
+            [ws.layoutView jh_widthIs:ratio ratioOfViewHeight:wkview];
         };
         [self.layoutArray addObject:block];
         
@@ -148,12 +164,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutHeightEqualToView)heightIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_heightIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutRatioOfViewHeight)heightIsRatioOfViewWidth{
     return ^(CGFloat ratio, UIView *view){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_heightIs:ratio ratioOfViewWidth:view];
+            [ws.layoutView jh_heightIs:ratio ratioOfViewWidth:wkview];
         };
         [self.layoutArray addObject:block];
         
@@ -165,8 +196,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat ratio, UIView *view){
     
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_heightIs:ratio ratioOfViewHeight:view];
+            [ws.layoutView jh_heightIs:ratio ratioOfViewHeight:wkview];
         };
         [self.layoutArray addObject:block];
         
@@ -188,12 +220,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutTopEqualToView)topIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_topIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutTopOfView)topOffsetTopOfView{
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_topIs:offsetY fromTopOfView:view updateHeight:update];
+            [ws.layoutView jh_topIs:offsetY fromTopOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -205,8 +252,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_topIs:offsetY fromMiddleOfView:view updateHeight:update];
+            [ws.layoutView jh_topIs:offsetY fromMiddleOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -218,8 +266,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_topIs:offsetY fromBottomOfView:view updateHeight:update];
+            [ws.layoutView jh_topIs:offsetY fromBottomOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -241,11 +290,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutLeftEqualToView)leftIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_leftIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutLeftOfView)leftOffsetLeftOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_leftIs:offsetX fromLeftOfView:view updateWidth:update];
+            [ws.layoutView jh_leftIs:offsetX fromLeftOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -255,9 +320,11 @@ typedef void(^JHLayoutBlock)(void);
 
 - (JHLayoutMiddleOfView)leftOffsetMiddleOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_leftIs:offsetX fromMiddleOfView:view updateWidth:update];
+            [ws.layoutView jh_leftIs:offsetX fromMiddleOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -267,9 +334,11 @@ typedef void(^JHLayoutBlock)(void);
 
 - (JHLayoutRightOfView)leftOffsetRightOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_leftIs:offsetX fromRightOfView:view updateWidth:update];
+            [ws.layoutView jh_leftIs:offsetX fromRightOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -291,12 +360,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutBottomEqualToView)bottomIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_bottomIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutTopOfView)bottomOffsetTopOfView{
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_bottomIs:offsetY fromTopOfView:view updateHeight:update];
+            [ws.layoutView jh_bottomIs:offsetY fromTopOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -308,8 +392,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_bottomIs:offsetY fromMiddleOfView:view updateHeight:update];
+            [ws.layoutView jh_bottomIs:offsetY fromMiddleOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -321,8 +406,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_bottomIs:offsetY fromBottomOfView:view updateHeight:update];
+            [ws.layoutView jh_bottomIs:offsetY fromBottomOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -344,11 +430,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutRightEqualToView)rightIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_rightIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutLeftOfView)rightOffsetLeftOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_rightIs:offsetX fromLeftOfView:view updateWidth:update];
+            [ws.layoutView jh_rightIs:offsetX fromLeftOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -358,9 +460,11 @@ typedef void(^JHLayoutBlock)(void);
 
 - (JHLayoutMiddleOfView)rightOffsetMiddleOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_rightIs:offsetX fromMiddleOfView:view updateWidth:update];
+            [ws.layoutView jh_rightIs:offsetX fromMiddleOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -370,9 +474,11 @@ typedef void(^JHLayoutBlock)(void);
 
 - (JHLayoutRightOfView)rightOffsetRightOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_rightIs:offsetX fromRightOfView:view updateWidth:update];
+            [ws.layoutView jh_rightIs:offsetX fromRightOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -394,11 +500,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutCenterXEqualToView)centerXIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_centerXIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutLeftOfView)centerXOffsetLeftOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_centerXIs:offsetX fromLeftOfView:view updateWidth:update];
+            [ws.layoutView jh_centerXIs:offsetX fromLeftOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -408,9 +530,11 @@ typedef void(^JHLayoutBlock)(void);
 
 - (JHLayoutMiddleOfView)centerXOffsetMiddleOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_centerXIs:offsetX fromMiddleOfView:view updateWidth:update];
+            [ws.layoutView jh_centerXIs:offsetX fromMiddleOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -420,9 +544,11 @@ typedef void(^JHLayoutBlock)(void);
 
 - (JHLayoutRightOfView)centerXOffsetRightOfView{
     return ^(CGFloat offsetX, UIView *view, BOOL update){
+        
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_centerXIs:offsetX fromRightOfView:view updateWidth:update];
+            [ws.layoutView jh_centerXIs:offsetX fromRightOfView:wkview updateWidth:update];
         };
         [self.layoutArray addObject:block];
         
@@ -444,12 +570,27 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutCenterYEqualToView)centerYIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_centerYIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutTopOfView)centerYOffsetTopOfView{
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_centerYIs:offsetY fromTopOfView:view updateHeight:update];
+            [ws.layoutView jh_centerYIs:offsetY fromTopOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -461,8 +602,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_centerYIs:offsetY fromMiddleOfView:view updateHeight:update];
+            [ws.layoutView jh_centerYIs:offsetY fromMiddleOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
@@ -474,8 +616,9 @@ typedef void(^JHLayoutBlock)(void);
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
         __weak typeof(self) ws = self;
+        __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_centerYIs:offsetY fromBottomOfView:view updateHeight:update];
+            [ws.layoutView jh_centerYIs:offsetY fromBottomOfView:wkview updateHeight:update];
         };
         [self.layoutArray addObject:block];
         
