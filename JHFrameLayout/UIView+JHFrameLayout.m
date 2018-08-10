@@ -29,25 +29,37 @@
 
 #import "UIView+JHFrameLayout.h"
 
+static CGFloat _JHFrameLayoutScale;
+
 @interface JH_HELPER_CLASS_UIView_JHFrameLayout:NSObject @end
 @implementation JH_HELPER_CLASS_UIView_JHFrameLayout @end
 
 @implementation UIView (JHFrameLayout)
 
++ (void)load{
+    _JHFrameLayoutScale = [UIScreen mainScreen].scale;
+}
+
 #pragma mark - public
 
 #pragma mark --- size, center, origin
 - (void)jh_sizeIs:(CGSize)size{
+    size.width = roundNumber(size.width);
+    size.height = roundNumber(size.height);
     CGRect frame = self.frame;
     frame.size = size;
     self.frame = frame;
 }
 
 - (void)jh_centerIs:(CGPoint)center{
+    center.x = roundNumber(center.x);
+    center.y = roundNumber(center.y);
     self.center = center;
 }
 
 - (void)jh_originIs:(CGPoint)origin{
+    origin.x = roundNumber(origin.x);
+    origin.y = roundNumber(origin.y);
     CGRect frame = self.frame;
     frame.origin = origin;
     self.frame = frame;
@@ -56,7 +68,7 @@
 #pragma mark --- width
 - (void)jh_widthIs:(CGFloat)width{
     CGRect frame = self.frame;
-    frame.size.width = width;
+    frame.size.width = roundNumber(width);
     self.frame = frame;
 }
 
@@ -75,7 +87,7 @@
 #pragma mark --- height
 - (void)jh_heightIs:(CGFloat)height{
     CGRect frame = self.frame;
-    frame.size.height = height;
+    frame.size.height = roundNumber(height);
     self.frame = frame;
 }
 
@@ -94,7 +106,7 @@
 #pragma mark --- top
 - (void)jh_topIs:(CGFloat)top{
     CGRect frame = self.frame;
-    frame.origin.y = top;
+    frame.origin.y = roundNumber(top);
     self.frame = frame;
 }
 
@@ -117,7 +129,7 @@
 #pragma mark --- left
 - (void)jh_leftIs:(CGFloat)left{
     CGRect frame = self.frame;
-    frame.origin.x = left;
+    frame.origin.x = roundNumber(left);
     self.frame = frame;
 }
 
@@ -142,9 +154,9 @@
     if (self.superview) {
         CGRect frame = self.frame;
         if (frame.size.height > 0) {
-            frame.origin.y = self.superview.frame.size.height + bottom - frame.size.height;
+            frame.origin.y = roundNumber(self.superview.frame.size.height + bottom - frame.size.height);
         }else{
-            frame.size.height = self.superview.frame.size.height + bottom - frame.origin.y;
+            frame.size.height = roundNumber(self.superview.frame.size.height + bottom - frame.origin.y);
         }
         self.frame = frame;
     }
@@ -171,9 +183,9 @@
     if (self.superview) {
         CGRect frame = self.frame;
         if (frame.size.width > 0) {
-            frame.origin.x = self.superview.frame.size.width + right - frame.size.width;
+            frame.origin.x = roundNumber(self.superview.frame.size.width + right - frame.size.width);
         }else{
-            frame.size.width = self.superview.frame.size.width + right - frame.origin.x;
+            frame.size.width = roundNumber(self.superview.frame.size.width + right - frame.origin.x);
         }
         self.frame = frame;
     }
@@ -198,7 +210,7 @@
 #pragma mark --- center X
 - (void)jh_centerXIs:(CGFloat)centerX{
     CGPoint center = self.center;
-    center.x = centerX;
+    center.x = roundNumber(centerX);
     self.center = center;
 }
 
@@ -225,7 +237,7 @@
 #pragma mark --- center Y
 - (void)jh_centerYIs:(CGFloat)centerY{
     CGPoint center = self.center;
-    center.y = centerY;
+    center.y = roundNumber(centerY);
     self.center = center;
 }
 
@@ -271,13 +283,13 @@
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
-        frame.size.height = frame.origin.y + frame.size.height - offsetY;
-        frame.origin.y = origin.y + offsetY + increment;
+        frame.size.height = roundNumber(frame.origin.y + frame.size.height - offsetY);
+        frame.origin.y = roundNumber(origin.y + offsetY + increment);
         if (frame.size.height < 0) {
             frame.size.height = 0;
         }
     }else{
-        frame.origin.y = origin.y + offsetY + increment;
+        frame.origin.y = roundNumber(origin.y + offsetY + increment);
     }
     self.frame = frame;
 }
@@ -286,13 +298,13 @@
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
-        frame.size.width = frame.origin.x + frame.size.width - offsetX;
-        frame.origin.x = origin.x + offsetX + increment;
+        frame.size.width = roundNumber(frame.origin.x + frame.size.width - offsetX);
+        frame.origin.x = roundNumber(origin.x + offsetX + increment);
         if (frame.size.width < 0) {
             frame.size.width = 0;
         }
     }else{
-        frame.origin.x = origin.x + offsetX + increment;
+        frame.origin.x = roundNumber(origin.x + offsetX + increment);
     }
     self.frame = frame;
 }
@@ -301,9 +313,9 @@
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
-        frame.size.height = origin.y + view.frame.size.height + offsetY + increment - self.frame.origin.y;
+        frame.size.height = roundNumber(origin.y + view.frame.size.height + offsetY + increment - self.frame.origin.y);
     }else{
-        frame.origin.y = origin.y + view.frame.size.height + offsetY + increment - self.frame.size.height;
+        frame.origin.y = roundNumber(origin.y + view.frame.size.height + offsetY + increment - self.frame.size.height);
     }
     self.frame = frame;
 }
@@ -312,9 +324,9 @@
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
-        frame.size.width = origin.x + view.frame.size.width + offsetX + increment - self.frame.origin.x;
+        frame.size.width = roundNumber(origin.x + view.frame.size.width + offsetX + increment - self.frame.origin.x);
     }else{
-        frame.origin.x = origin.x + view.frame.size.width + offsetX + increment - self.frame.size.width;
+        frame.origin.x = roundNumber(origin.x + view.frame.size.width + offsetX + increment - self.frame.size.width);
     }
     self.frame = frame;
 }
@@ -377,6 +389,28 @@
     }
     // NSLog(@"allSuperViewOfView:%@",marr);
     return [NSSet setWithArray:marr];
+}
+
+static inline CGFloat roundNumber(CGFloat number) {
+    
+    // comes from MyLayout(MyLayoutMath.m) -2018-08-10 14:01:32
+    
+    if (number == 0 || number == CGFLOAT_MAX || number == -CGFLOAT_MAX) {
+        return number;
+    }
+    
+    // 因为设备点转化为像素时，如果偏移了半个像素点就有可能会产生虚化的效果，因此这里要将设备点先转化为像素点，然后再添加0.5个偏移取整后再除以倍数则是转化为有效的设备逻辑点。
+#if CGFLOAT_IS_DOUBLE == 1
+    if (number < 0)
+        return ceil(fma(number, _JHFrameLayoutScale, -0.5)) / _JHFrameLayoutScale;
+    else
+        return floor(fma(number, _JHFrameLayoutScale, 0.5)) / _JHFrameLayoutScale;
+#else
+    if (number < 0)
+        return ceilf(fmaf(number, _JHFrameLayoutScale, -0.5f)) / _JHFrameLayoutScale;
+    else
+        return floorf(fmaf(number, _JHFrameLayoutScale, 0.5f)) / _JHFrameLayoutScale;
+#endif
 }
 
 @end
