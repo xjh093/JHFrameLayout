@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.authors      = { 'Haocold' => 'xjh093@126.com' }
   s.homepage     = 'https://github.com/xjh093/JHFrameLayout'
 
-  s.platform     = :ios
+  s.ios.deployment_target = '6.0'
 
   s.source       = { :git => 'https://github.com/xjh093/JHFrameLayout.git', :tag => s.version}
   
