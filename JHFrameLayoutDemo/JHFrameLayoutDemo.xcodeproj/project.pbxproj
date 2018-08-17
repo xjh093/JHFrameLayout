@@ -30,6 +30,7 @@
 		087B7ECE20BE3AD100B14DD1 /* Demo9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ECD20BE3AD100B14DD1 /* Demo9ViewController.m */; };
 		087B7ED120BE3C0500B14DD1 /* Demo10ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */; };
 		087B7ED420BE3CD900B14DD1 /* Demo11ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */; };
+		E32C20AD2125846F00680AAE /* Demo12ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32C20AC2125846F00680AAE /* Demo12ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,8 @@
 		087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo10ViewController.m; sourceTree = "<group>"; };
 		087B7ED220BE3CD900B14DD1 /* Demo11ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo11ViewController.h; sourceTree = "<group>"; };
 		087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo11ViewController.m; sourceTree = "<group>"; };
+		E32C20AB2125846F00680AAE /* Demo12ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo12ViewController.h; sourceTree = "<group>"; };
+		E32C20AC2125846F00680AAE /* Demo12ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo12ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +236,8 @@
 				087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */,
 				087B7ED220BE3CD900B14DD1 /* Demo11ViewController.h */,
 				087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */,
+				E32C20AB2125846F00680AAE /* Demo12ViewController.h */,
+				E32C20AC2125846F00680AAE /* Demo12ViewController.m */,
 			);
 			path = DemoVC;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				087B7ED120BE3C0500B14DD1 /* Demo10ViewController.m in Sources */,
 				087B7ECB20BE3A1300B14DD1 /* Demo8ViewController.m in Sources */,
 				087B7EC220BE33EA00B14DD1 /* Demo5ViewController.m in Sources */,
+				E32C20AD2125846F00680AAE /* Demo12ViewController.m in Sources */,
 				087B7EB620BCE85500B14DD1 /* JHUIViewControllerDecoupler.m in Sources */,
 				087B7E5020BCE33D00B14DD1 /* ViewController.m in Sources */,
 				087B7E8420BCE36900B14DD1 /* UIView+JHFrameLayout.m in Sources */,

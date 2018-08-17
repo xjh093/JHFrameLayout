@@ -628,7 +628,10 @@ typedef void(^JHLayoutBlock)(void);
 
 @end
 
-@interface JHFrameLayoutView()@end
+@interface JHFrameLayoutView()
+@property (nonatomic,  assign) BOOL  initFlag;
+@property (nonatomic,  assign) BOOL  superviewObserveFlag;
+@end
 
 @implementation JHFrameLayoutView
 
@@ -641,8 +644,51 @@ typedef void(^JHLayoutBlock)(void);
     return self;
 }
 
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    if (_superviewObserveFlag) {
+        [self.superview removeObserver:self forKeyPath:@"frame"];
+        [self.superview removeObserver:self forKeyPath:@"bounds"];
+        [self.superview removeObserver:self forKeyPath:@"center"];
+    }
+}
+
 - (void)layoutSubviews{
+    
+    if (!_initFlag) {
+        [self jh_initOnce];
+    }
+
+    [self jh_layoutView:self];
     [self jh_layoutSubviews:self.subviews];
+}
+
+- (void)jh_initOnce
+{
+    _initFlag = YES;
+    
+    // JHFrameLayoutView is not UIViewController's root view.
+    if (![self valueForKey:@"viewDelegate"]) {
+        
+        // Screen Rotate Notification
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jh_delayLayoutSubviews) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+        
+        // Observe superview's frame
+        if (self.superview) {
+            _superviewObserveFlag = YES;
+            [self.superview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+            [self.superview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+            [self.superview addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+        }
+        
+    }
+}
+
+- (void)jh_delayLayoutSubviews
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self layoutSubviews];
+    });
 }
 
 - (void)jh_layoutSubviews:(NSArray *)subviews{
@@ -656,6 +702,16 @@ typedef void(^JHLayoutBlock)(void);
 {
     for (JHLayoutBlock block in view.jhLayout.layoutArray) {
         block();
+    }
+}
+
+#pragma mark --- NSKeyValueObserving
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    if ([keyPath isEqualToString:@"frame"] ||
+        [keyPath isEqualToString:@"bounds"] ||
+        [keyPath isEqualToString:@"center"] ) {
+        [self layoutSubviews];
     }
 }
 
