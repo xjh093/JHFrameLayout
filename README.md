@@ -4,9 +4,19 @@
 ## What is it?
 A autolayout base on 'frame'.
 
+## Pod
+
+`pod 'JHFrameLayout'`
+
 ---
 
 ## Logs
+
+### 2018-8-17
+#### 1.observe Screen Rotate Notification
+#### 2.observe superview's frame,bounds,center
+
+---
 
 ### 2018-8-10
 #### 1.add method 'roundNumber' for 1x,2x,3x.
