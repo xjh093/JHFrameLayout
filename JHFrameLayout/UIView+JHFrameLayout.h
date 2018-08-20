@@ -33,8 +33,11 @@
 
 // size,center,origin
 - (void)jh_sizeIs:(CGSize)size;
+- (void)jh_sizeIsEqualToView:(UIView *)view;
 - (void)jh_centerIs:(CGPoint)center;
+- (void)jh_centerIsEqualToView:(UIView *)view;
 - (void)jh_originIs:(CGPoint)origin;
+- (void)jh_originISEqualToView:(UIView *)view;
 
 
 // width

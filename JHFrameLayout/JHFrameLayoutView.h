@@ -33,8 +33,11 @@
 @class JHLayout;
 
 typedef JHLayout *(^JHLayoutSize)(CGSize size);
+typedef JHLayout *(^JHLayoutSizeEqualToView)(UIView *view);
 typedef JHLayout *(^JHLayoutOrigin)(CGPoint origin);
+typedef JHLayout *(^JHLayoutOriginEqualToView)(UIView *view);
 typedef JHLayout *(^JHLayoutCenter)(CGPoint center);
+typedef JHLayout *(^JHLayoutCenterEqualToView)(UIView *view);
 
 typedef JHLayout *(^JHLayoutWidth)(CGFloat width);
 typedef JHLayout *(^JHLayoutHeight)(CGFloat height);
@@ -68,8 +71,11 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 
 // size,center,origin
 @property (nonatomic, copy, readonly) JHLayoutSize   sizeIs;
+@property (nonatomic, copy, readonly) JHLayoutSizeEqualToView  sizeIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutCenter centerIs;
+@property (nonatomic, copy, readonly) JHLayoutCenterEqualToView  centerIsEqualToView;
 @property (nonatomic, copy, readonly) JHLayoutOrigin originIs;
+@property (nonatomic, copy, readonly) JHLayoutOriginEqualToView  originIsEqualToView;
 
 // width
 @property (nonatomic, copy, readonly) JHLayoutWidth  widthIs;

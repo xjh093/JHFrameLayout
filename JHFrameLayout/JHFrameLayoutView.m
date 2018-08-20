@@ -68,6 +68,20 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutSizeEqualToView)sizeIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_sizeIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutCenter)centerIs{
     return ^(CGPoint center){
         
@@ -81,12 +95,40 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutCenterEqualToView)centerIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_centerIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutOrigin)originIs{
     return ^(CGPoint origin){
         
         __weak typeof(self) ws = self;
         JHLayoutBlock block = ^(){
             [ws.layoutView jh_originIs:origin];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
+- (JHLayoutOriginEqualToView)originIsEqualToView{
+    return ^(UIView *view){
+        
+        __weak typeof(self) ws = self;
+        UIView *wkview = view;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_originISEqualToView:wkview];
         };
         [self.layoutArray addObject:block];
         

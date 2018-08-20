@@ -51,10 +51,22 @@ static CGFloat _JHFrameLayoutScale;
     self.frame = frame;
 }
 
+- (void)jh_sizeIsEqualToView:(UIView *)view{
+    [self jh_sizeIs:view.frame.size];
+}
+
 - (void)jh_centerIs:(CGPoint)center{
     center.x = roundNumber(center.x);
     center.y = roundNumber(center.y);
     self.center = center;
+}
+
+- (void)jh_centerIsEqualToView:(UIView *)view{
+    if (self.superview == view) {
+        [self jh_centerIs:CGPointMake(CGRectGetWidth(view.frame)*0.5, CGRectGetHeight(view.frame)*0.5)];
+    }else{
+        [self jh_centerIs:view.center];
+    }
 }
 
 - (void)jh_originIs:(CGPoint)origin{
@@ -63,6 +75,10 @@ static CGFloat _JHFrameLayoutScale;
     CGRect frame = self.frame;
     frame.origin = origin;
     self.frame = frame;
+}
+
+- (void)jh_originISEqualToView:(UIView *)view{
+    [self jh_originIs:view.frame.origin];
 }
 
 #pragma mark --- width
