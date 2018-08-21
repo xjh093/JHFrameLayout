@@ -12,6 +12,11 @@ A autolayout base on 'frame'.
 
 ## Logs
 
+### 2018-8-21
+#### 1.fix bug.
+
+---
+
 ### 2018-8-17
 #### 1.observe Screen Rotate Notification
 #### 2.observe superview's frame,bounds,center
