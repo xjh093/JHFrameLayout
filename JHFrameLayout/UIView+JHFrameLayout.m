@@ -179,7 +179,7 @@ static CGFloat _JHFrameLayoutScale;
 }
 
 - (void)jh_bottomIsEqualToView:(UIView *)view{
-    [self jh_bottomIs:0 fromBottomOfView:view updateHeight:YES];
+    [self jh_bottomIs:0 fromBottomOfView:view updateHeight:NO];
 }
 
 - (void)jh_bottomIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view updateHeight:(BOOL)flag{
@@ -208,7 +208,7 @@ static CGFloat _JHFrameLayoutScale;
 }
 
 - (void)jh_rightIsEqualToView:(UIView *)view{
-    [self jh_rightIs:0 fromRightOfView:view updateWidth:YES];
+    [self jh_rightIs:0 fromRightOfView:view updateWidth:NO];
 }
 
 - (void)jh_rightIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag{

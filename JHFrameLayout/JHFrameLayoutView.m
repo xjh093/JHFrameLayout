@@ -673,6 +673,7 @@ typedef void(^JHLayoutBlock)(void);
 @interface JHFrameLayoutView()
 @property (nonatomic,  assign) BOOL  initFlag;
 @property (nonatomic,  assign) BOOL  superviewObserveFlag;
+@property (nonatomic,  unsafe_unretained) UIView *superView;
 @end
 
 @implementation JHFrameLayoutView
@@ -689,9 +690,9 @@ typedef void(^JHLayoutBlock)(void);
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     if (_superviewObserveFlag) {
-        [self.superview removeObserver:self forKeyPath:@"frame"];
-        [self.superview removeObserver:self forKeyPath:@"bounds"];
-        [self.superview removeObserver:self forKeyPath:@"center"];
+        [_superView removeObserver:self forKeyPath:@"frame"];
+        [_superView removeObserver:self forKeyPath:@"bounds"];
+        [_superView removeObserver:self forKeyPath:@"center"];
     }
 }
 
@@ -709,20 +710,30 @@ typedef void(^JHLayoutBlock)(void);
 {
     _initFlag = YES;
     
-    // JHFrameLayoutView is not UIViewController's root view.
-    if (![self valueForKey:@"viewDelegate"]) {
-        
-        // Screen Rotate Notification
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jh_delayLayoutSubviews) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-        
-        // Observe superview's frame
-        if (self.superview) {
-            _superviewObserveFlag = YES;
-            [self.superview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-            [self.superview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
-            [self.superview addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+    id vc;
+    UIView *view = self;
+    while (view != nil) {
+        vc = [view valueForKey:@"viewDelegate"];
+        if (vc != nil) {
+            
+            // JHFrameLayoutView is not UIViewController's root view.
+            if (![[vc view] isKindOfClass:[JHFrameLayoutView class]]){
+                
+                // Screen Rotate Notification
+                [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jh_delayLayoutSubviews) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
+                
+                // Observe superview's frame
+                if (self.superview) {
+                    _superviewObserveFlag = YES;
+                    _superView = self.superview;
+                    [self.superview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
+                    [self.superview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
+                    [self.superview addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
+                }
+            }
+            break;
         }
-        
+        view = view.superview;
     }
 }
 
