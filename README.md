@@ -12,45 +12,45 @@ A autolayout base on 'frame'.
 
 ## Logs
 
-### 2018-8-21
-#### 1.fix bug.
+ 2018-8-21
+- 1.fix bug.
 
 ---
 
-### 2018-8-17
-#### 1.observe Screen Rotate Notification
-#### 2.observe superview's frame,bounds,center
+ 2018-8-17
+- 1.observe Screen Rotate Notification
+- 2.observe superview's frame,bounds,center
 
 ---
 
-### 2018-8-10
-#### 1.add method 'roundNumber' for 1x,2x,3x.
+ 2018-8-10
+- 1.add method 'roundNumber' for 1x,2x,3x.
 
 ---
 
-### 2018-7-19
-#### 1.update.
+ 2018-7-19
+- 1.update.
 
 ---
 
-### 2018-5-30
-#### 1.chainable & autolayout.
-#### 2.fix bugs.
+ 2018-5-30
+- 1.chainable & autolayout.
+- 2.fix bugs.
 
 ---
 
-### 2018-5-28
-#### 1.fix bug: jh_rightIs: jh_bottomIs:
+ 2018-5-28
+- 1.fix bug: jh_rightIs: jh_bottomIs:
 
 ---
 
-### 2018-5-15
-#### 1.fix bug: when there is no common superview.
+ 2018-5-15
+- 1.fix bug: when there is no common superview.
 
 ---
 
-### 2018-1-17
-#### 1.upload.
+ 2018-1-17
+- 1.upload.
 
 ---
 
