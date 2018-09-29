@@ -10,6 +10,13 @@ A autolayout base on 'frame'.
 
 ---
 
+## Compare layout time
+`Frame` vs `JHFrameLayout` vs `MyFlowLayout`
+
+![image](https://github.com/xjh093/JHFrameLayout/blob/master/image1.png)
+
+---
+
 ## Logs
 
  2018-8-21
