@@ -19,6 +19,15 @@ A autolayout base on 'frame'.
 
 ## Logs
 
+ 2018-11-6
+- fix crash: about remove observer of superview
+
+1. iOS 9.3 An instance 0x7ffb2263c230 of class UIView was deallocated while key value observers were still registered with it
+
+2. iOS 12.1 EXC_BAD_ACCESS
+
+---
+
  2018-8-21
 - 1.fix bug.
 
