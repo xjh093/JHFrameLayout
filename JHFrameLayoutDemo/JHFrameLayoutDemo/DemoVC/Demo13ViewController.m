@@ -1,47 +1,46 @@
 //
-//  Demo12ViewController.m
+//  Demo13ViewController.m
 //  JHFrameLayoutDemo
 //
-//  Created by xuejinghao on 2018/8/16.
+//  Created by xuejinghao on 2018/11/5.
 //
 
-#import "Demo12ViewController.h"
+#import "Demo13ViewController.h"
 #import "JHFrameLayout.h"
 
-@interface Demo12ViewController ()
+@interface CustomView: JHFrameLayoutView
+@end
+@implementation CustomView
+@end
+
+@interface Demo13ViewController ()
 
 @end
 
-@implementation Demo12ViewController
+@implementation Demo13ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    /**<
+    /**
      
-     This Demo tells you how to use 'JHFrameLayoutView' simplely.
-     if JHFrameLayoutView is not UIViewController's root view
-     JHFrameLayoutView will observe Screen Rotate Notification
-     and Observe superview's frame,bounds,center
+     a custom view inherit JHFrameLayoutView
      
-     这个 Demo 简单地介绍了 'JHFrameLayoutView' 的使用
-     当 JHFrameLayoutView 不是 UIViewController 的 根视图时
-     JHFrameLayoutView 会添加 屏幕旋转 监听，以及 监听 superview 的 frame,bounds,center
+     自定义的view 继承自 JHFrameLayoutView
      
      */
     
-    
-    self.navigationItem.title = @"Demo12";
+    self.navigationItem.title = @"Demo13";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIView *view = [[UIView alloc] init];
+    CustomView *view = [[CustomView alloc] init];
     view.frame = CGRectMake(10, CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10, CGRectGetWidth(self.view.frame)-20, 300);
     view.backgroundColor = [UIColor redColor];
     [self.view addSubview:view];
     
-    JHFrameLayoutView *layoutView = [[JHFrameLayoutView alloc] init];
+    UIView *layoutView = [[UIView alloc] init];
     layoutView.backgroundColor = [UIColor lightGrayColor];
     [view addSubview:layoutView];
     
@@ -117,11 +116,6 @@
         frame.size.height = 300;
         view.frame = frame;
     }
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*

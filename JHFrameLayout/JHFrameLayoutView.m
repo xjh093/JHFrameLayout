@@ -673,7 +673,6 @@ typedef void(^JHLayoutBlock)(void);
 @interface JHFrameLayoutView()
 @property (nonatomic,  assign) BOOL  initFlag;
 @property (nonatomic,  assign) BOOL  superviewObserveFlag;
-@property (nonatomic,  unsafe_unretained) UIView *superView;
 @end
 
 @implementation JHFrameLayoutView
@@ -687,13 +686,61 @@ typedef void(^JHLayoutBlock)(void);
     return self;
 }
 
+- (void)willMoveToSuperview:(UIView *)newSuperview{
+    [super willMoveToSuperview:newSuperview];
+    
+    // newSuperview is not kind of JHFrameLayoutView
+    if (newSuperview && ![newSuperview isKindOfClass:[JHFrameLayoutView class]]) {
+        
+        // self.superview may be observed before
+        if (_superviewObserveFlag && self.superview != nil && ![self.superview isKindOfClass:[JHFrameLayoutView class]]) {
+            @try {
+                [self.superview removeObserver:self forKeyPath:@"frame"];
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
+            
+            @try {
+                [self.superview removeObserver:self forKeyPath:@"bounds"];
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
+        }
+        
+        // observe newSuperview's frame and bounds
+        [newSuperview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
+        [newSuperview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
+        _superviewObserveFlag = YES;
+    }
+    
+    // remove observer
+    if (newSuperview == nil && self.superview != nil && _superviewObserveFlag && ![self.superview isKindOfClass:[JHFrameLayoutView class]]) {
+        _superviewObserveFlag = NO;
+        
+        @try {
+            [self.superview removeObserver:self forKeyPath:@"frame"];
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
+        
+        @try {
+            [self.superview removeObserver:self forKeyPath:@"bounds"];
+        } @catch (NSException *exception) {
+            
+        } @finally {
+            
+        }
+    }
+}
+
 - (void)dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    if (_superviewObserveFlag) {
-        [_superView removeObserver:self forKeyPath:@"frame"];
-        [_superView removeObserver:self forKeyPath:@"bounds"];
-        [_superView removeObserver:self forKeyPath:@"center"];
-    }
 }
 
 - (void)layoutSubviews{
@@ -721,15 +768,6 @@ typedef void(^JHLayoutBlock)(void);
                 
                 // Screen Rotate Notification
                 [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(jh_delayLayoutSubviews) name:UIApplicationDidChangeStatusBarOrientationNotification object:nil];
-                
-                // Observe superview's frame
-                if (self.superview) {
-                    _superviewObserveFlag = YES;
-                    _superView = self.superview;
-                    [self.superview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:nil];
-                    [self.superview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:nil];
-                    [self.superview addObserver:self forKeyPath:@"center" options:NSKeyValueObservingOptionNew context:nil];
-                }
             }
             break;
         }
@@ -762,8 +800,7 @@ typedef void(^JHLayoutBlock)(void);
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
     if ([keyPath isEqualToString:@"frame"] ||
-        [keyPath isEqualToString:@"bounds"] ||
-        [keyPath isEqualToString:@"center"] ) {
+        [keyPath isEqualToString:@"bounds"]) {
         [self layoutSubviews];
     }
 }

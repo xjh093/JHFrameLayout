@@ -30,6 +30,8 @@
 		087B7ECE20BE3AD100B14DD1 /* Demo9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ECD20BE3AD100B14DD1 /* Demo9ViewController.m */; };
 		087B7ED120BE3C0500B14DD1 /* Demo10ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */; };
 		087B7ED420BE3CD900B14DD1 /* Demo11ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */; };
+		18F492AA219040BD0031E021 /* Demo13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F492A9219040BD0031E021 /* Demo13ViewController.m */; };
+		18F492B6219169E50031E021 /* Demo14ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F492B5219169E50031E021 /* Demo14ViewController.m */; };
 		E32C20AD2125846F00680AAE /* Demo12ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E32C20AC2125846F00680AAE /* Demo12ViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,10 @@
 		087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo10ViewController.m; sourceTree = "<group>"; };
 		087B7ED220BE3CD900B14DD1 /* Demo11ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo11ViewController.h; sourceTree = "<group>"; };
 		087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo11ViewController.m; sourceTree = "<group>"; };
+		18F492A8219040BD0031E021 /* Demo13ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo13ViewController.h; sourceTree = "<group>"; };
+		18F492A9219040BD0031E021 /* Demo13ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo13ViewController.m; sourceTree = "<group>"; };
+		18F492B4219169E50031E021 /* Demo14ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo14ViewController.h; sourceTree = "<group>"; };
+		18F492B5219169E50031E021 /* Demo14ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo14ViewController.m; sourceTree = "<group>"; };
 		E32C20AB2125846F00680AAE /* Demo12ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo12ViewController.h; sourceTree = "<group>"; };
 		E32C20AC2125846F00680AAE /* Demo12ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo12ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -238,6 +244,10 @@
 				087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */,
 				E32C20AB2125846F00680AAE /* Demo12ViewController.h */,
 				E32C20AC2125846F00680AAE /* Demo12ViewController.m */,
+				18F492A8219040BD0031E021 /* Demo13ViewController.h */,
+				18F492A9219040BD0031E021 /* Demo13ViewController.m */,
+				18F492B4219169E50031E021 /* Demo14ViewController.h */,
+				18F492B5219169E50031E021 /* Demo14ViewController.m */,
 			);
 			path = DemoVC;
 			sourceTree = "<group>";
@@ -390,6 +400,7 @@
 				087B7EBF20BD646000B14DD1 /* Demo4ViewController.m in Sources */,
 				087B7EC820BE37B500B14DD1 /* Demo7ViewController.m in Sources */,
 				087B7E8320BCE36900B14DD1 /* JHFrameLayoutView.m in Sources */,
+				18F492AA219040BD0031E021 /* Demo13ViewController.m in Sources */,
 				087B7EBC20BD523400B14DD1 /* Demo3ViewController.m in Sources */,
 				087B7ED120BE3C0500B14DD1 /* Demo10ViewController.m in Sources */,
 				087B7ECB20BE3A1300B14DD1 /* Demo8ViewController.m in Sources */,
@@ -401,6 +412,7 @@
 				087B7EB920BCF78100B14DD1 /* Demo2ViewController.m in Sources */,
 				087B7EC520BE348400B14DD1 /* Demo6ViewController.m in Sources */,
 				087B7E4D20BCE33D00B14DD1 /* AppDelegate.m in Sources */,
+				18F492B6219169E50031E021 /* Demo14ViewController.m in Sources */,
 				087B7ECE20BE3AD100B14DD1 /* Demo9ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -575,7 +587,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.haocold.JHFrameLayoutDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c30aaefd-682c-4565-aaf0-50fc4fc13174";
-				PROVISIONING_PROFILE_SPECIFIER = haocold_dev;
+				PROVISIONING_PROFILE_SPECIFIER = haocold.develop;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -593,7 +605,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.haocold.JHFrameLayoutDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c30aaefd-682c-4565-aaf0-50fc4fc13174";
-				PROVISIONING_PROFILE_SPECIFIER = haocold_dev;
+				PROVISIONING_PROFILE_SPECIFIER = haocold.develop;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
