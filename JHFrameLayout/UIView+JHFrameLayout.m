@@ -81,6 +81,12 @@ static CGFloat _JHFrameLayoutScale;
     [self jh_originIs:view.frame.origin];
 }
 
+#pragma mark --- edge
+- (void)jh_edgeIs:(CGFloat)padding{
+    [self jh_topIsEqualToBottom:padding];
+    [self jh_leftIsEqualToRight:padding];
+}
+
 #pragma mark --- width
 - (void)jh_widthIs:(CGFloat)width{
     CGRect frame = self.frame;
@@ -130,6 +136,11 @@ static CGFloat _JHFrameLayoutScale;
     [self jh_topIs:CGRectGetMinY(view.frame)];
 }
 
+- (void)jh_topIsEqualToBottom:(CGFloat)padding{
+    [self jh_topIs:padding];
+    [self jh_bottomIs:-padding fromBottomOfView:self.superview updateHeight:YES];
+}
+
 - (void)jh_topIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag{
     [self xx_topIs:offsetY fromView:view add:0 updateHeight:flag];
 }
@@ -151,6 +162,11 @@ static CGFloat _JHFrameLayoutScale;
 
 - (void)jh_leftIsEqualToView:(UIView *)view{
     [self jh_leftIs:CGRectGetMinX(view.frame)];
+}
+
+- (void)jh_leftIsEqualToRight:(CGFloat)padding{
+    [self jh_leftIs:padding];
+    [self jh_rightIs:-padding fromRightOfView:self.superview updateWidth:YES];
 }
 
 - (void)jh_leftIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag{

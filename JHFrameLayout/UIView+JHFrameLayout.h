@@ -39,6 +39,8 @@
 - (void)jh_originIs:(CGPoint)origin;
 - (void)jh_originISEqualToView:(UIView *)view;
 
+// edge
+- (void)jh_edgeIs:(CGFloat)padding;
 
 // width
 - (void)jh_widthIs:(CGFloat)width;
@@ -57,6 +59,7 @@
 /// top space in super view
 - (void)jh_topIs:(CGFloat)top;
 - (void)jh_topIsEqualToView:(UIView *)view;
+- (void)jh_topIsEqualToBottom:(CGFloat)padding;
 // if flag is YES, will update height to keep bottom space
 - (void)jh_topIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag;
 - (void)jh_topIs:(CGFloat)offsetY fromMiddleOfView:(UIView *)view updateHeight:(BOOL)flag;
@@ -66,6 +69,7 @@
 /// left space in super view
 - (void)jh_leftIs:(CGFloat)left;
 - (void)jh_leftIsEqualToView:(UIView *)view;
+- (void)jh_leftIsEqualToRight:(CGFloat)padding;
 // if flag is YES, will update width to keep right space
 - (void)jh_leftIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag;
 - (void)jh_leftIs:(CGFloat)offsetX fromMiddleOfView:(UIView *)view updateWidth:(BOOL)flag;

@@ -136,6 +136,20 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+#pragma mark - edge
+- (JHLayoutEdge)edgeIs{
+    return ^(CGFloat padding){
+        
+        __weak typeof(self) ws = self;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_edgeIs:padding];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 #pragma mark - width
 - (JHLayoutWidth)widthIs{
     return ^(CGFloat width){
@@ -276,6 +290,19 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+- (JHLayoutTopEqualToBottom)topIsEqualToBottom{
+    return ^(CGFloat padding){
+        
+        __weak typeof(self) ws = self;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_topIsEqualToBottom:padding];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
 - (JHLayoutTopOfView)topOffsetTopOfView{
     return ^(CGFloat offsetY, UIView *view, BOOL update){
         
@@ -339,6 +366,19 @@ typedef void(^JHLayoutBlock)(void);
         __weak UIView *wkview = view;
         JHLayoutBlock block = ^(){
             [ws.layoutView jh_leftIsEqualToView:wkview];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
+- (JHLayoutLeftEqualToRight)leftIsEqualToRight{
+    return ^(CGFloat padding){
+        
+        __weak typeof(self) ws = self;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_leftIsEqualToRight:padding];
         };
         [self.layoutArray addObject:block];
         

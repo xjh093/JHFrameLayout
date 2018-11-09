@@ -38,6 +38,7 @@ typedef JHLayout *(^JHLayoutOrigin)(CGPoint origin);
 typedef JHLayout *(^JHLayoutOriginEqualToView)(UIView *view);
 typedef JHLayout *(^JHLayoutCenter)(CGPoint center);
 typedef JHLayout *(^JHLayoutCenterEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutEdge)(CGFloat padding);
 
 typedef JHLayout *(^JHLayoutWidth)(CGFloat width);
 typedef JHLayout *(^JHLayoutHeight)(CGFloat height);
@@ -53,7 +54,9 @@ typedef JHLayout *(^JHLayoutRight)(CGFloat offsetX);
 typedef JHLayout *(^JHLayoutCenterX)(CGFloat offsetX);
 typedef JHLayout *(^JHLayoutCenterY)(CGFloat offsetY);
 typedef JHLayout *(^JHLayoutTopEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutTopEqualToBottom)(CGFloat padding);
 typedef JHLayout *(^JHLayoutLeftEqualToView)(UIView *view);
+typedef JHLayout *(^JHLayoutLeftEqualToRight)(CGFloat padding);
 typedef JHLayout *(^JHLayoutBottomEqualToView)(UIView *view);
 typedef JHLayout *(^JHLayoutRightEqualToView)(UIView *view);
 typedef JHLayout *(^JHLayoutCenterXEqualToView)(UIView *view);
@@ -77,6 +80,9 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 @property (nonatomic, copy, readonly) JHLayoutOrigin originIs;
 @property (nonatomic, copy, readonly) JHLayoutOriginEqualToView  originIsEqualToView;
 
+//edge
+@property (nonatomic, copy, readonly) JHLayoutEdge  edgeIs;
+
 // width
 @property (nonatomic, copy, readonly) JHLayoutWidth  widthIs;
 @property (nonatomic, copy, readonly) JHLayoutWidthEqualToView  widthIsEqualToView;
@@ -92,6 +98,7 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 // top space in super view
 @property (nonatomic, copy, readonly) JHLayoutTop topIs;
 @property (nonatomic, copy, readonly) JHLayoutTopEqualToView topIsEqualToView;
+@property (nonatomic, copy, readonly) JHLayoutTopEqualToBottom topIsEqualToBottom;
 @property (nonatomic, copy, readonly) JHLayoutTopOfView topOffsetTopOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView topOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutBottomOfView topOffsetBottomOfView;
@@ -100,6 +107,7 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 // left space in super view
 @property (nonatomic, copy, readonly) JHLayoutLeft leftIs;
 @property (nonatomic, copy, readonly) JHLayoutLeftEqualToView leftIsEqualToView;
+@property (nonatomic, copy, readonly) JHLayoutLeftEqualToRight leftIsEqualToRight;
 @property (nonatomic, copy, readonly) JHLayoutLeftOfView leftOffsetLeftOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView leftOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutRightOfView leftOffsetRightOfView;
