@@ -1,23 +1,26 @@
 # JHFrameLayout
-### frame layout
 
-## What is it?
+---
+
+# What
 A light weight autolayout framework.
 
-## Pod
+---
+
+# Pod
 
 `pod 'JHFrameLayout'`
 
 ---
 
-## Compare layout time
+# Compare layout time
 `Frame` vs `JHFrameLayout` vs `MyFlowLayout`
 
 ![image](https://github.com/xjh093/JHFrameLayout/blob/master/image1.png)
 
 ---
 
-## Logs
+# Logs
 
  2018-11-9
 - add some simple methods
@@ -81,7 +84,7 @@ A light weight autolayout framework.
 
 ---
 
-## USE
+# USE
 
 ```
 - (void)loadView{
@@ -101,7 +104,7 @@ A light weight autolayout framework.
 
 ```
 
-### More details in Demo
+# More details in Demo
 
 ---
 
