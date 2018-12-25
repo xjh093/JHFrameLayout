@@ -85,7 +85,5 @@ A light weight autolayout framework.
 
 ```
 
-# More details in Demo
-
----
+# More details in Demo :)
 
