@@ -1,8 +1,4 @@
 # JHFrameLayout
-
----
-
-# What
 A light weight autolayout framework.
 
 ---
@@ -22,14 +18,14 @@ A light weight autolayout framework.
 
 # Logs
 
- 2018-11-9
+### 2018-11-9
 - add some simple methods
 
-1.jh_topIsEqualToBottom:
+    - 1.jh_topIsEqualToBottom:
 
-2.jh_leftIsEqualToRight:
+    - 2.jh_leftIsEqualToRight:
 
-3.jh_edgeIs:
+    - 3.jh_edgeIs:
 
 ---
 
