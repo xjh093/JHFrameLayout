@@ -5,7 +5,7 @@ A light weight autolayout framework.
 
 # Version
 Latest release version: 
-- [2.5.1](https://github.com/xjh093/JHFrameLayout/releases)
+- [2.5.2](https://github.com/xjh093/JHFrameLayout/releases)
 
 ---
 
@@ -46,6 +46,26 @@ Latest release version:
 ---
 
 # Logs
+
+### 2019-1-4
+- fix bugs about 'updateWidth' and 'updateHeight'.
+- update Demo.
+- add some methods:
+    - jh_maxXIs:updateWidth:
+    
+    - jh_maxYIs:updateHeight:
+- add some methods for 'UILabel':
+    - jh_autoWidth
+    
+    - jh_autoHeight
+    
+    - jh_minWidth:
+    
+    - jh_maxWidth:
+    
+    - jh_minHeight:
+    
+    - jh_maxHeight:
 
 ### 2018-11-9
 - add some simple methods
