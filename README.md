@@ -3,7 +3,13 @@ A light weight autolayout framework.
 
 ---
 
-# Pod
+# Version
+Latest release version: 
+- [2.5.1](https://github.com/xjh093/JHFrameLayout/releases)
+
+---
+
+# Cocoapods
 
 `pod 'JHFrameLayout'`
 
@@ -13,6 +19,29 @@ A light weight autolayout framework.
 `Frame` vs `JHFrameLayout` vs `MyFlowLayout`
 
 ![image](https://github.com/xjh093/JHFrameLayout/blob/master/image1.png)
+
+---
+
+
+# Usage
+
+```
+- (void)loadView{
+
+    self.view = [[JHFrameLayoutView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+    UIView *view1 = [[UIView alloc] init];
+    view1.backgroundColor = [UIColor grayColor];
+    [self.view addSubview:view1];
+    
+    view1.jhLayout
+    .topOffsetBottomOfView(10, self.navigationController.navigationBar, NO)
+    .leftIs(10)
+    .bottomOffsetMiddleOfView(-50, self.view, YES)
+    .rightOffsetMiddleOfView(-5, self.view, YES);
+}
+
+```
 
 ---
 
@@ -64,26 +93,6 @@ A light weight autolayout framework.
 - 1.upload.
 
 ---
-
-# USE
-
-```
-- (void)loadView{
-
-    self.view = [[JHFrameLayoutView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-
-    UIView *view1 = [[UIView alloc] init];
-    view1.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:view1];
-    
-    view1.jhLayout
-    .topOffsetBottomOfView(10, self.navigationController.navigationBar, NO)
-    .leftIs(10)
-    .bottomOffsetMiddleOfView(-50, self.view, YES)
-    .rightOffsetMiddleOfView(-5, self.view, YES);
-}
-
-```
 
 # More details in Demo :)
 
