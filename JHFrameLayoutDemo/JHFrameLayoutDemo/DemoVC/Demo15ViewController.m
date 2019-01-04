@@ -1,71 +1,55 @@
 //
-//  ViewController.m
+//  Demo15ViewController.m
 //  JHFrameLayoutDemo
 //
-//  Created by xuejinghao on 2018/5/29.
+//  Created by HaoCold on 2018/11/12.
 //
 
-#import "ViewController.h"
-#import "JHUIViewControllerDecoupler.h"
+#import "Demo15ViewController.h"
 #import "JHFrameLayout.h"
 
-@interface ViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface Demo15ViewController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic,  strong) UITableView *tableView;
+
 @end
 
-@implementation ViewController
+@implementation Demo15ViewController
 
 - (void)loadView{
     self.view = [[JHFrameLayoutView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    [self.view addSubview:self.tableView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    // Do any additional setup after loading the view.
     
-    self.navigationItem.title = @"JHFrameLayout";
-    [self setupViews];
-}
-
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-#pragma mark -------------------------------------视图-------------------------------------------
-
-- (void)setupViews
-{
-#if 0
-    CGFloat X,Y,W,H;
-    X = 0;
-    Y = CGRectGetMaxY(self.navigationController.navigationBar.frame);
-    W = CGRectGetWidth(self.view.frame);
-    H = CGRectGetHeight(self.view.frame) - Y;
-    self.tableView.frame = CGRectMake(X,Y,W,H);
-#else
+    /*
+        UITableViewCell auto height
+     
+        自动高度
+     */
+    
+    self.navigationItem.title = @"Cell 自动高度";
+    
     self.tableView.jhLayout
     .topOffsetBottomOfView(0, self.navigationController.navigationBar, NO)
     .widthIsEqualToView(self.view)
     .bottomOffsetBottomOfView(0, self.view, YES);
-#endif
-    [self.view addSubview:_tableView];
-    self.view.backgroundColor = [UIColor whiteColor];
+    
 }
 
 #pragma mark -------------------------------------事件-------------------------------------------
-
-- (void)back
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 
 #pragma mark ---UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 22;
+    return 12;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return (indexPath.row+1)*20+5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -74,20 +58,21 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
+        [cell.contentView addSubview:({
+            JHFrameLayoutView *view = [[JHFrameLayoutView alloc] init];
+            view.backgroundColor = [UIColor lightGrayColor];
+            view.jhLayout.edgeIs(5);
+            view;
+        })];
     }
-    cell.textLabel.text = [NSString stringWithFormat:@"Demo%@",@(indexPath.row+1)];
+    cell.textLabel.text = [NSString stringWithFormat:@"Row %@",@(indexPath.row+1)];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    NSString *clsString = [NSString stringWithFormat:@"Demo%@ViewController",@(indexPath.row+1)];
-    UIViewController *vc = [JHUIViewControllerDecoupler jh_controllerFromString:clsString paramter:nil];
-    [self.navigationController pushViewController:vc animated:YES];
 }
-
 
 #pragma mark -------------------------------------懒加载-----------------------------------------
 
@@ -108,5 +93,15 @@
     }
     return _tableView;
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end

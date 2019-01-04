@@ -60,6 +60,15 @@
     view4.backgroundColor = [UIColor purpleColor];
     [layoutView addSubview:view4];
     
+    JHFrameLayoutView *view4_1 = [[JHFrameLayoutView alloc] init];
+    view4_1.backgroundColor = [UIColor brownColor];
+    [view4 addSubview:view4_1];
+    
+    UIView *view4_1_1 = [[UIView alloc] init];
+    view4_1_1.backgroundColor = [UIColor yellowColor];
+    [view4_1 addSubview:view4_1_1];
+    
+    
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(10, CGRectGetHeight(self.view.frame) - 50, CGRectGetWidth(self.view.frame)-20 , 30);
     button.backgroundColor = [UIColor lightGrayColor];
@@ -101,6 +110,14 @@
     .sizeIs(CGSizeMake(50, 50))
     .rightOffsetRightOfView(-10, layoutView, NO)
     .bottomOffsetBottomOfView(-10, layoutView, NO);
+    
+    view4_1.jhLayout
+    .edgeIs(5);
+    
+    view4_1_1.jhLayout
+    .topIs(5)
+    .leftIsEqualToRight(5)
+    .heightIs(10);
     
 }
 

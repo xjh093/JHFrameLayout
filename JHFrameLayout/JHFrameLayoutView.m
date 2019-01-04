@@ -33,6 +33,99 @@
 
 typedef void(^JHLayoutBlock)(void);
 
+@interface JHLayoutLabelTextObserver : NSObject
+
+@property (nonatomic,  assign) BOOL  autoWidth;
+@property (nonatomic,  assign) BOOL  autoHeight;
+@property (nonatomic,  assign) CGFloat  minWidth;
+@property (nonatomic,  assign) CGFloat  maxWidth;
+@property (nonatomic,  assign) CGFloat  minHeight;
+@property (nonatomic,  assign) CGFloat  maxHeight;
+
+@property (nonatomic,  unsafe_unretained) UILabel *label;
+@end
+
+@implementation JHLayoutLabelTextObserver
+
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        _minWidth = -1;
+        _maxWidth = -1;
+        _minHeight = -1;
+        _maxHeight = -1;
+    }
+    return self;
+}
+
+- (void)dealloc{
+    [_label removeObserver:self forKeyPath:@"text"];
+    [_label removeObserver:self forKeyPath:@"attributedText"];
+}
+
+- (void)setLabel:(UILabel *)label{
+    if (!_label) {
+        _label = label;
+        
+        [label addObserver:self forKeyPath:@"text" options:NSKeyValueObservingOptionNew context:NULL];
+        [label addObserver:self forKeyPath:@"attributedText" options:NSKeyValueObservingOptionNew context:NULL];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"text"] ||
+        [keyPath isEqualToString:@"attributedText"]) {
+        
+        if (_autoWidth) {
+            [_label jh_autoWidth];
+        }
+        else if (_autoHeight) {
+            [_label jh_autoHeight];
+        }
+        
+        if (_minWidth >= 0) {
+            [_label jh_minWidth:_minWidth];
+        }
+        
+        if (_maxWidth >= 0) {
+            [_label jh_maxWidth:_maxWidth];
+        }
+        
+        if (_minHeight >= 0) {
+            [_label jh_minHeight:_minHeight];
+        }
+        
+        if (_maxHeight >= 0) {
+            [_label jh_maxHeight:_maxHeight];
+        }
+        
+        [_label.superview setNeedsLayout];
+    }
+}
+
+@end
+
+@interface UILabel (JHLayoutObserver)
+@property (nonatomic,  strong) JHLayoutLabelTextObserver *textObserver;
+@end
+
+@implementation UILabel (JHLayoutObserver)
+- (void)setTextObserver:(JHLayoutLabelTextObserver *)textObserver{
+    objc_setAssociatedObject(self, @selector(textObserver), textObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (JHLayoutLabelTextObserver *)textObserver{
+    JHLayoutLabelTextObserver *textObserver = objc_getAssociatedObject(self, _cmd);
+    if (!textObserver) {
+        textObserver = [[JHLayoutLabelTextObserver alloc] init];
+        textObserver.label = self;
+        self.textObserver = textObserver;
+    }
+    return textObserver;
+}
+@end
+
+
 @interface JHLayout()
 @property (nonatomic,  strong) NSMutableArray *layoutArray;
 @end
@@ -708,7 +801,132 @@ typedef void(^JHLayoutBlock)(void);
     };
 }
 
+#pragma mark - max X
+
+- (JHLayoutMaxX)maxXIs{
+    return ^(CGFloat maxX, BOOL update){
+        
+        __weak typeof(self) ws = self;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_maxXIs:maxX updateWidth:update];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
+#pragma mark - max Y
+
+- (JHLayoutMaxX)maxYIs{
+    return ^(CGFloat maxY, BOOL update){
+        
+        __weak typeof(self) ws = self;
+        JHLayoutBlock block = ^(){
+            [ws.layoutView jh_maxYIs:maxY updateHeight:update];
+        };
+        [self.layoutArray addObject:block];
+        
+        return self;
+    };
+}
+
+#pragma mark - UILabel
+
+- (JHLayoutAutoWidth)autoWidth{
+    return ^(){
+        
+        if ([self.layoutView isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)self.layoutView;
+            label.textObserver.autoWidth = YES;
+            if (label.text.length > 0) {
+                [label jh_autoWidth];
+            }
+        }
+        
+        return self;
+    };
+}
+
+- (JHLayoutAutoHeight)autoHeight{
+    return ^(){
+        
+        if ([self.layoutView isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)self.layoutView;
+            label.textObserver.autoHeight = YES;
+            if (label.text.length > 0) {
+                [label jh_autoHeight];
+            }
+        }
+        
+        return self;
+    };
+}
+
+- (JHLayoutMinWidth)minWidth{
+    return ^(CGFloat minWidth){
+        
+        if ([self.layoutView isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)self.layoutView;
+            label.textObserver.minWidth = minWidth;
+            if (label.text.length > 0) {
+                [label jh_minWidth:minWidth];
+            }
+        }
+        
+        return self;
+    };
+}
+
+- (JHLayoutMaxWidth)maxWidth{
+    return ^(CGFloat maxWidth){
+        
+        if ([self.layoutView isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)self.layoutView;
+            label.textObserver.maxWidth = maxWidth;
+            if (label.text.length > 0) {
+                [label jh_maxWidth:maxWidth];
+            }
+        }
+        
+        return self;
+    };
+}
+
+- (JHLayoutMinHeight)minHeight{
+    return ^(CGFloat minHeight){
+        
+        if ([self.layoutView isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)self.layoutView;
+            label.textObserver.minHeight = minHeight;
+            if (label.text.length > 0) {
+                [label jh_minHeight:minHeight];
+            }
+        }
+        
+        return self;
+    };
+}
+
+- (JHLayoutMaxHeight)maxHeight{
+    return ^(CGFloat maxHeight){
+        
+        if ([self.layoutView isKindOfClass:[UILabel class]]) {
+            UILabel *label = (UILabel *)self.layoutView;
+            label.textObserver.maxHeight = maxHeight;
+            if (label.text.length > 0) {
+                [label jh_maxHeight:maxHeight];
+            }
+        }
+        
+        return self;
+    };
+}
+
 @end
+
+
+void *JHFrameLayoutViewSuperviewObserveContext = (void *)201811161;
 
 @interface JHFrameLayoutView()
 @property (nonatomic,  assign) BOOL  initFlag;
@@ -730,7 +948,7 @@ typedef void(^JHLayoutBlock)(void);
     [super willMoveToSuperview:newSuperview];
     
     // newSuperview is not kind of JHFrameLayoutView
-    if (newSuperview && ![newSuperview isKindOfClass:[JHFrameLayoutView class]]) {
+    if (newSuperview && ![newSuperview isKindOfClass:[JHFrameLayoutView class]] ) {
         
         // self.superview may be observed before
         if (_superviewObserveFlag && self.superview != nil && ![self.superview isKindOfClass:[JHFrameLayoutView class]]) {
@@ -752,8 +970,8 @@ typedef void(^JHLayoutBlock)(void);
         }
         
         // observe newSuperview's frame and bounds
-        [newSuperview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:NULL];
-        [newSuperview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:NULL];
+        [newSuperview addObserver:self forKeyPath:@"frame" options:NSKeyValueObservingOptionNew context:JHFrameLayoutViewSuperviewObserveContext];
+        [newSuperview addObserver:self forKeyPath:@"bounds" options:NSKeyValueObservingOptionNew context:JHFrameLayoutViewSuperviewObserveContext];
         _superviewObserveFlag = YES;
     }
     
@@ -783,6 +1001,11 @@ typedef void(^JHLayoutBlock)(void);
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (CGSize)sizeThatFits:(CGSize)size{
+    [self layoutSubviews];
+    return self.frame.size;
+}
+
 - (void)layoutSubviews{
     
     if (!_initFlag) {
@@ -791,6 +1014,7 @@ typedef void(^JHLayoutBlock)(void);
 
     [self jh_layoutView:self];
     [self jh_layoutSubviews:self.subviews];
+    [self jh_layoutView:self];
 }
 
 - (void)jh_initOnce
@@ -831,6 +1055,10 @@ typedef void(^JHLayoutBlock)(void);
 
 - (void)jh_layoutView:(UIView *)view
 {
+    if (view.jhLayout.layoutArray.count == 0) {
+        return;
+    }
+    
     for (JHLayoutBlock block in view.jhLayout.layoutArray) {
         block();
     }
@@ -839,9 +1067,11 @@ typedef void(^JHLayoutBlock)(void);
 #pragma mark --- NSKeyValueObserving
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
 {
-    if ([keyPath isEqualToString:@"frame"] ||
-        [keyPath isEqualToString:@"bounds"]) {
-        [self layoutSubviews];
+    if (context == JHFrameLayoutViewSuperviewObserveContext) {
+        if ([keyPath isEqualToString:@"frame"] ||
+            [keyPath isEqualToString:@"bounds"]) {
+            [self layoutSubviews];
+        }
     }
 }
 
@@ -850,7 +1080,7 @@ typedef void(^JHLayoutBlock)(void);
 @implementation UIView (JHLayout)
 
 - (void)setJhLayout:(JHLayout *)jhLayout{
-    objc_setAssociatedObject(self, @selector(jhLayout), jhLayout, OBJC_ASSOCIATION_RETAIN);
+    objc_setAssociatedObject(self, @selector(jhLayout), jhLayout, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 - (JHLayout *)jhLayout{

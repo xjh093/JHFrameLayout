@@ -68,6 +68,16 @@ typedef JHLayout *(^JHLayoutBottomOfView)(CGFloat offsetY, UIView *view, BOOL up
 typedef JHLayout *(^JHLayoutRightOfView)(CGFloat offsetX, UIView *view, BOOL update);
 typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL update);
 
+typedef JHLayout *(^JHLayoutMaxX)(CGFloat maxX, BOOL update);
+typedef JHLayout *(^JHLayoutMaxY)(CGFloat maxY, BOOL update);
+
+typedef JHLayout *(^JHLayoutAutoWidth)(void);
+typedef JHLayout *(^JHLayoutAutoHeight)(void);
+typedef JHLayout *(^JHLayoutMinWidth)(CGFloat minWidth);
+typedef JHLayout *(^JHLayoutMaxWidth)(CGFloat maxWidth);
+typedef JHLayout *(^JHLayoutMinHeight)(CGFloat minHeight);
+typedef JHLayout *(^JHLayoutMaxHeight)(CGFloat maxHeight);
+
 @interface JHLayout : NSObject
 
 @property (nonatomic,    weak) UIView *layoutView;
@@ -140,6 +150,20 @@ typedef JHLayout *(^JHLayoutMiddleOfView)(CGFloat offset, UIView *view, BOOL upd
 @property (nonatomic, copy, readonly) JHLayoutTopOfView centerYOffsetTopOfView;
 @property (nonatomic, copy, readonly) JHLayoutMiddleOfView centerYOffsetMiddleOfView;
 @property (nonatomic, copy, readonly) JHLayoutBottomOfView centerYOffsetBottomOfView;
+
+/// max X
+@property (nonatomic, copy, readonly) JHLayoutMaxX maxXIs;
+
+/// max Y
+@property (nonatomic, copy, readonly) JHLayoutMaxY maxYIs;
+
+/// for UILabel
+@property (nonatomic, copy, readonly) JHLayoutAutoWidth autoWidth;
+@property (nonatomic, copy, readonly) JHLayoutAutoHeight autoHeight;
+@property (nonatomic, copy, readonly) JHLayoutMinWidth minWidth;
+@property (nonatomic, copy, readonly) JHLayoutMaxWidth maxWidth;
+@property (nonatomic, copy, readonly) JHLayoutMinHeight minHeight;
+@property (nonatomic, copy, readonly) JHLayoutMaxHeight maxHeight;
 
 @end
 

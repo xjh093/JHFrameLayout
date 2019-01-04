@@ -141,6 +141,18 @@ static CGFloat _JHFrameLayoutScale;
     [self jh_bottomIs:-padding fromBottomOfView:self.superview updateHeight:YES];
 }
 
+- (void)jh_topIs:(CGFloat)offsetY fromTopOfView:(UIView *)view{
+    [self xx_topIs:offsetY fromView:view add:0 updateHeight:NO];
+}
+
+- (void)jh_topIs:(CGFloat)offsetY fromMiddleOfView:(UIView *)view{
+    [self xx_topIs:offsetY fromView:view add:view.frame.size.height*0.5 updateHeight:NO];
+}
+
+- (void)jh_topIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view{
+    [self xx_topIs:offsetY fromView:view add:view.frame.size.height updateHeight:NO];
+}
+
 - (void)jh_topIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag{
     [self xx_topIs:offsetY fromView:view add:0 updateHeight:flag];
 }
@@ -167,6 +179,18 @@ static CGFloat _JHFrameLayoutScale;
 - (void)jh_leftIsEqualToRight:(CGFloat)padding{
     [self jh_leftIs:padding];
     [self jh_rightIs:-padding fromRightOfView:self.superview updateWidth:YES];
+}
+
+- (void)jh_leftIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view{
+    [self xx_leftIs:offsetX fromView:view add:0 updateWidth:NO];
+}
+
+- (void)jh_leftIs:(CGFloat)offsetX fromMiddleOfView:(UIView *)view{
+    [self xx_leftIs:offsetX fromView:view add:view.frame.size.width*0.5 updateWidth:NO];
+}
+
+- (void)jh_leftIs:(CGFloat)offsetX fromRightOfView:(UIView *)view{
+    [self xx_leftIs:offsetX fromView:view add:view.frame.size.width updateWidth:NO];
 }
 
 - (void)jh_leftIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag{
@@ -198,6 +222,18 @@ static CGFloat _JHFrameLayoutScale;
     [self jh_bottomIs:0 fromBottomOfView:view updateHeight:NO];
 }
 
+- (void)jh_bottomIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view{
+    [self xx_bottomIs:offsetY fromView:view add:0 updateHeight:NO];
+}
+
+- (void)jh_bottomIs:(CGFloat)offsetY fromMiddleOfView:(UIView *)view{
+    [self xx_bottomIs:offsetY fromView:view add:-view.frame.size.height*0.5 updateHeight:NO];
+}
+
+- (void)jh_bottomIs:(CGFloat)offsetY fromTopOfView:(UIView *)view{
+    [self xx_bottomIs:offsetY fromView:view add:-view.frame.size.height updateHeight:NO];
+}
+
 - (void)jh_bottomIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view updateHeight:(BOOL)flag{
     [self xx_bottomIs:offsetY fromView:view add:0 updateHeight:flag];
 }
@@ -225,6 +261,18 @@ static CGFloat _JHFrameLayoutScale;
 
 - (void)jh_rightIsEqualToView:(UIView *)view{
     [self jh_rightIs:0 fromRightOfView:view updateWidth:NO];
+}
+
+- (void)jh_rightIs:(CGFloat)offsetX fromRightOfView:(UIView *)view{
+    [self xx_rightIs:offsetX fromView:view add:0 updateWidth:NO];
+}
+
+- (void)jh_rightIs:(CGFloat)offsetX fromMiddleOfView:(UIView *)view{
+    [self xx_rightIs:offsetX fromView:view add:-view.frame.size.width*0.5 updateWidth:NO];
+}
+
+- (void)jh_rightIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view{
+    [self xx_rightIs:offsetX fromView:view add:-view.frame.size.width updateWidth:NO];
 }
 
 - (void)jh_rightIs:(CGFloat)offsetX fromRightOfView:(UIView *)view updateWidth:(BOOL)flag{
@@ -293,6 +341,119 @@ static CGFloat _JHFrameLayoutScale;
     [self xx_centerYIs:offsetY fromView:view type:2 updateHeight:flag];
 }
 
+#pragma mark --- max X
+- (void)jh_maxXIs:(CGFloat)maxX updateWidth:(BOOL)flag{
+    CGRect frame = self.frame;
+    if (flag) {
+        frame.size.width = roundNumber(maxX - frame.origin.x);
+    }else{
+        frame.origin.x = roundNumber(maxX - frame.size.width);
+    }
+    self.frame = frame;
+}
+
+#pragma mark --- max Y
+- (void)jh_maxYIs:(CGFloat)maxY updateHeight:(BOOL)flag{
+    CGRect frame = self.frame;
+    if (flag) {
+        frame.size.height = roundNumber(maxY - frame.origin.y);
+    }else{
+        frame.origin.y = roundNumber(maxY - frame.size.height);
+    }
+    self.frame = frame;
+}
+
+#pragma mark --- UILabel
+- (void)jh_autoWidth{
+    if ([self isKindOfClass:[UILabel class]]) {
+        CGRect frame = self.frame;
+        UILabel *label = (UILabel *)self;
+        label.numberOfLines = 1;
+        [label sizeToFit];
+        frame.size.width = ceilf(CGRectGetWidth(label.frame));
+        label.frame = frame;
+    }
+}
+
+- (void)jh_autoHeight{
+    if ([self isKindOfClass:[UILabel class]]) {
+        CGRect frame = self.frame;
+        UILabel *label = (UILabel *)self;
+        label.numberOfLines = 0;
+        [label sizeToFit];
+        frame.size.height = ceilf(CGRectGetHeight(label.frame));
+        label.frame = frame;
+    }
+}
+
+- (void)jh_minWidth:(CGFloat)width{
+    if ([self isKindOfClass:[UILabel class]]) {
+        CGRect frame = self.frame;
+        UILabel *label = (UILabel *)self;
+        label.numberOfLines = 1;
+        [label sizeToFit];
+        
+        if (CGRectGetWidth(label.frame) < width) {
+            frame.size.width = width;
+        }else{
+            frame.size.width = CGRectGetWidth(label.frame);
+        }
+        
+        label.frame = frame;
+    }
+}
+
+- (void)jh_maxWidth:(CGFloat)width{
+    if ([self isKindOfClass:[UILabel class]]) {
+        CGRect frame = self.frame;
+        UILabel *label = (UILabel *)self;
+        label.numberOfLines = 1;
+        [label sizeToFit];
+        
+        if (CGRectGetWidth(label.frame) > width) {
+            frame.size.width = width;
+        }else{
+            frame.size.width = CGRectGetWidth(label.frame);
+        }
+        
+        label.frame = frame;
+    }
+}
+
+- (void)jh_minHeight:(CGFloat)height{
+    if ([self isKindOfClass:[UILabel class]]) {
+        CGRect frame = self.frame;
+        UILabel *label = (UILabel *)self;
+        label.numberOfLines = 0;
+        [label sizeToFit];
+        
+        if (CGRectGetHeight(label.frame) < height) {
+            frame.size.height = height;
+        }else{
+            frame.size.height = CGRectGetHeight(label.frame);
+        }
+        
+        label.frame = frame;
+    }
+}
+
+- (void)jh_maxHeight:(CGFloat)height{
+    if ([self isKindOfClass:[UILabel class]]) {
+        CGRect frame = self.frame;
+        UILabel *label = (UILabel *)self;
+        label.numberOfLines = 0;
+        [label sizeToFit];
+        
+        if (CGRectGetHeight(label.frame) > height) {
+            frame.size.height = height;
+        }else{
+            frame.size.height = CGRectGetHeight(label.frame);
+        }
+        
+        label.frame = frame;
+    }
+}
+
 #pragma mark - private
 
 - (CGPoint)xx_originConvertFromView:(UIView *)view{
@@ -315,11 +476,8 @@ static CGFloat _JHFrameLayoutScale;
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
-        frame.size.height = roundNumber(frame.origin.y + frame.size.height - offsetY);
+        frame.size.height = roundNumber(frame.origin.y + frame.size.height - origin.y - offsetY - increment);
         frame.origin.y = roundNumber(origin.y + offsetY + increment);
-        if (frame.size.height < 0) {
-            frame.size.height = 0;
-        }
     }else{
         frame.origin.y = roundNumber(origin.y + offsetY + increment);
     }
@@ -330,11 +488,8 @@ static CGFloat _JHFrameLayoutScale;
     CGPoint origin = [self xx_originConvertFromView:view];
     CGRect frame = self.frame;
     if (flag) {
-        frame.size.width = roundNumber(frame.origin.x + frame.size.width - offsetX);
+        frame.size.width = roundNumber(frame.origin.x + frame.size.width - origin.x - offsetX - increment);
         frame.origin.x = roundNumber(origin.x + offsetX + increment);
-        if (frame.size.width < 0) {
-            frame.size.width = 0;
-        }
     }else{
         frame.origin.x = roundNumber(origin.x + offsetX + increment);
     }
@@ -419,7 +574,6 @@ static CGFloat _JHFrameLayoutScale;
         [marr addObject:superview];
         superview = superview.superview;
     }
-    // NSLog(@"allSuperViewOfView:%@",marr);
     return [NSSet setWithArray:marr];
 }
 
