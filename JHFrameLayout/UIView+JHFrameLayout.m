@@ -302,6 +302,18 @@ static CGFloat _JHFrameLayoutScale;
     }
 }
 
+- (void)jh_centerXIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view{
+    [self xx_centerXIs:offsetX fromView:view type:0 updateWidth:NO];
+}
+
+- (void)jh_centerXIs:(CGFloat)offsetX fromMiddleOfView:(UIView *)view{
+    [self xx_centerXIs:offsetX fromView:view type:1 updateWidth:NO];
+}
+
+- (void)jh_centerXIs:(CGFloat)offsetX fromRightOfView:(UIView *)view{
+    [self xx_centerXIs:offsetX fromView:view type:2 updateWidth:NO];
+}
+
 - (void)jh_centerXIs:(CGFloat)offsetX fromLeftOfView:(UIView *)view updateWidth:(BOOL)flag{
     [self xx_centerXIs:offsetX fromView:view type:0 updateWidth:flag];
 }
@@ -327,6 +339,18 @@ static CGFloat _JHFrameLayoutScale;
     }else{
         [self jh_centerYIs:CGRectGetMidY(view.frame)];
     }
+}
+
+- (void)jh_centerYIs:(CGFloat)offsetY fromTopOfView:(UIView *)view{
+    [self xx_centerYIs:offsetY fromView:view type:0 updateHeight:NO];
+}
+
+- (void)jh_centerYIs:(CGFloat)offsetY fromMiddleOfView:(UIView *)view{
+    [self xx_centerYIs:offsetY fromView:view type:1 updateHeight:NO];
+}
+
+- (void)jh_centerYIs:(CGFloat)offsetY fromBottomOfView:(UIView *)view{
+    [self xx_centerYIs:offsetY fromView:view type:2 updateHeight:NO];
 }
 
 - (void)jh_centerYIs:(CGFloat)offsetY fromTopOfView:(UIView *)view updateHeight:(BOOL)flag{
