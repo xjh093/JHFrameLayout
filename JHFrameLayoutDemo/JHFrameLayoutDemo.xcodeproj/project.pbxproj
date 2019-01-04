@@ -30,6 +30,8 @@
 		087B7ECE20BE3AD100B14DD1 /* Demo9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ECD20BE3AD100B14DD1 /* Demo9ViewController.m */; };
 		087B7ED120BE3C0500B14DD1 /* Demo10ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */; };
 		087B7ED420BE3CD900B14DD1 /* Demo11ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */; };
+		18C40FB221DF0EC300D0FA51 /* Demo17ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */; };
+		18C40FB521DF0ECA00D0FA51 /* Demo17ViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */; };
 		18CF1FD2219931E8004A9F4A /* Demo15ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF1FD1219931E8004A9F4A /* Demo15ViewController.m */; };
 		18DF3C3521A6C29A009B74C6 /* Demo16ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DF3C3421A6C29A009B74C6 /* Demo16ViewController.m */; };
 		18F492AA219040BD0031E021 /* Demo13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F492A9219040BD0031E021 /* Demo13ViewController.m */; };
@@ -100,6 +102,10 @@
 		087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo10ViewController.m; sourceTree = "<group>"; };
 		087B7ED220BE3CD900B14DD1 /* Demo11ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo11ViewController.h; sourceTree = "<group>"; };
 		087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo11ViewController.m; sourceTree = "<group>"; };
+		18C40FB021DF0EC200D0FA51 /* Demo17ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo17ViewController.h; sourceTree = "<group>"; };
+		18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo17ViewController.m; sourceTree = "<group>"; };
+		18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo17ViewCell.m; sourceTree = "<group>"; };
+		18C40FB421DF0EC900D0FA51 /* Demo17ViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo17ViewCell.h; sourceTree = "<group>"; };
 		18CF1FD0219931E8004A9F4A /* Demo15ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo15ViewController.h; sourceTree = "<group>"; };
 		18CF1FD1219931E8004A9F4A /* Demo15ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo15ViewController.m; sourceTree = "<group>"; };
 		18DF3C3321A6C29A009B74C6 /* Demo16ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo16ViewController.h; sourceTree = "<group>"; };
@@ -258,6 +264,10 @@
 				18CF1FD1219931E8004A9F4A /* Demo15ViewController.m */,
 				18DF3C3321A6C29A009B74C6 /* Demo16ViewController.h */,
 				18DF3C3421A6C29A009B74C6 /* Demo16ViewController.m */,
+				18C40FB021DF0EC200D0FA51 /* Demo17ViewController.h */,
+				18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */,
+				18C40FB421DF0EC900D0FA51 /* Demo17ViewCell.h */,
+				18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */,
 			);
 			path = DemoVC;
 			sourceTree = "<group>";
@@ -419,9 +429,11 @@
 				E32C20AD2125846F00680AAE /* Demo12ViewController.m in Sources */,
 				087B7EB620BCE85500B14DD1 /* JHUIViewControllerDecoupler.m in Sources */,
 				087B7E5020BCE33D00B14DD1 /* ViewController.m in Sources */,
+				18C40FB221DF0EC300D0FA51 /* Demo17ViewController.m in Sources */,
 				087B7E8420BCE36900B14DD1 /* UIView+JHFrameLayout.m in Sources */,
 				087B7EB920BCF78100B14DD1 /* Demo2ViewController.m in Sources */,
 				087B7EC520BE348400B14DD1 /* Demo6ViewController.m in Sources */,
+				18C40FB521DF0ECA00D0FA51 /* Demo17ViewCell.m in Sources */,
 				087B7E4D20BCE33D00B14DD1 /* AppDelegate.m in Sources */,
 				18F492B6219169E50031E021 /* Demo14ViewController.m in Sources */,
 				18DF3C3521A6C29A009B74C6 /* Demo16ViewController.m in Sources */,

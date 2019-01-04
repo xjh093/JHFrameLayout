@@ -8,5 +8,5 @@
 #import <UIKit/UIKit.h>
 
 @interface Demo4ViewController : UIViewController
-
+@property (nonatomic,  assign) BOOL  second;
 @end

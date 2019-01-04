@@ -116,7 +116,6 @@
     button1.titleLabel.textAlignment = 1;
     button1.backgroundColor = [UIColor lightGrayColor];
     [button1 setTitleColor:[UIColor blackColor] forState:0];
-    [button1 addTarget:self action:@selector(update1) forControlEvents:1<<6];
     [self.view addSubview:button1];
     return button1;
 }

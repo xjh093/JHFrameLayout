@@ -68,26 +68,26 @@
     [button3 addTarget:self action:@selector(update3) forControlEvents:1<<6];
     
     {
-    NSString *text = @""
-    "在 Style 1 的布局情形下:\n"
-    "如果参考视图位于布局视图的顶部\n"
-    "那么:\n"
-    "布局视图的高度 = 两个视图计算之差\n"
-    "布局视图的起点y = 参考视图的计算起点\n\n"
-    "如果看不明白，把一个视图的frame的height设置为负数,对比前后frame,就会明白";
+        NSString *text = @""
+        "在 Style 1 的布局情形下:\n"
+        "如果参考视图位于布局视图的顶部\n"
+        "那么:\n"
+        "布局视图的高度 = 两个视图计算之差\n"
+        "布局视图的起点y = 参考视图的计算起点\n\n"
+        "如果看不明白，把一个视图的frame的height设置为负数,对比前后frame,就会明白";
     
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 0, 0, 0);
-    label.text = text;
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:14];
-    label.textAlignment = NSTextAlignmentLeft;
-    label.numberOfLines = 0;
-    [self.view addSubview:label];
+        UILabel *label = [[UILabel alloc] init];
+        label.frame = CGRectMake(0, 0, 0, 0);
+        label.text = text;
+        label.textColor = [UIColor blackColor];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.numberOfLines = 0;
+        [self.view addSubview:label];
     
-    [label jh_widthIsEqualToView:self.view];
-    [label jh_topIs:20 fromBottomOfView:button3 updateHeight:NO];
-    [label jh_bottomIs:0 fromBottomOfView:self.view updateHeight:YES];
+        [label jh_widthIsEqualToView:self.view];
+        [label jh_topIs:20 fromBottomOfView:button3 updateHeight:NO];
+        [label jh_bottomIs:0 fromBottomOfView:self.view updateHeight:YES];
     }
 }
 
@@ -137,7 +137,6 @@
     button1.titleLabel.textAlignment = 1;
     button1.backgroundColor = [UIColor lightGrayColor];
     [button1 setTitleColor:[UIColor blackColor] forState:0];
-    [button1 addTarget:self action:@selector(update1) forControlEvents:1<<6];
     [self.view addSubview:button1];
     return button1;
 }

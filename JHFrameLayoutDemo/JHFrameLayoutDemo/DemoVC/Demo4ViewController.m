@@ -52,7 +52,7 @@
     CGFloat width = CGRectGetWidth(self.view.bounds);
     
     UIButton *button1 = [self jhsetupButton];
-    button1.frame = CGRectMake(0, CGRectGetMaxY(label1.frame)+50, width, 40);
+    button1.frame = CGRectMake(0, CGRectGetMaxY(label1.frame)+20, width, 40);
     [button1 setTitle:@"Click Me\n[_label jh_rightIs:-5 fromRightOfView:_grayView updateWidth:YES];" forState:0];
     [button1 addTarget:self action:@selector(update1) forControlEvents:1<<6];
     
@@ -66,27 +66,58 @@
     [button3 setTitle:@"Click Me\n[_label jh_rightIs:-5 fromLeftOfView:_grayView updateWidth:YES];" forState:0];
     [button3 addTarget:self action:@selector(update3) forControlEvents:1<<6];
     
+    UIButton *nextButton = [self jhsetupButton];
+    nextButton.frame = CGRectMake(0, CGRectGetMaxY(button3.frame)+20, width, 40);
+    [nextButton setTitle:@"More Demo About CenterX" forState:0];
+    [nextButton addTarget:self action:@selector(goSecondVC) forControlEvents:1<<6];
+    
+    if (_second) {
+        
+        button1.hidden = button2.hidden = button3.hidden = YES;
+        
+        UIButton *button4 = [self jhsetupButton];
+        button4.frame = CGRectMake(0, CGRectGetMaxY(label1.frame)+50, width, 40);
+        [button4 setTitle:@"Click Me\n[_label jh_centerXIs:-5 fromRightOfView:_grayView updateWidth:YES];" forState:0];
+        [button4 addTarget:self action:@selector(update4) forControlEvents:1<<6];
+        
+        UIButton *button5 = [self jhsetupButton];
+        button5.frame = CGRectMake(0, CGRectGetMaxY(button4.frame)+10, width, 40);
+        [button5 setTitle:@"Click Me\n[_label jh_centerXIs:-5 fromMiddleOfView:_grayView updateWidth:YES];" forState:0];
+        [button5 addTarget:self action:@selector(update5) forControlEvents:1<<6];
+        
+        UIButton *button6 = [self jhsetupButton];
+        button6.frame = CGRectMake(0, CGRectGetMaxY(button5.frame)+10, width, 40);
+        [button6 setTitle:@"Click Me\n[_label jh_centerXIs:-5 fromLeftOfView:_grayView updateWidth:YES];" forState:0];
+        [button6 addTarget:self action:@selector(update6) forControlEvents:1<<6];
+        
+        nextButton.hidden = YES;
+    }
+    
     {
-    NSString *text = @""
-    "在 Style 3 的布局情形下:\n"
-    "如果参考视图位于布局视图的左侧\n"
-    "那么:\n"
-    "布局视图的宽度 = 两个视图计算之差\n"
-    "布局视图的起点x = 参考视图的计算起点\n\n"
-    "如果看不明白，把一个视图的frame的width设置为负数,对比前后frame,就会明白";
+        NSString *text = @""
+        "在 Style 3 的布局情形下:\n"
+        "如果参考视图位于布局视图的左侧\n"
+        "那么:\n"
+        "布局视图的宽度 = 两个视图计算之差\n"
+        "布局视图的起点x = 参考视图的计算起点\n\n"
+        "如果看不明白，把一个视图的frame的width设置为负数,对比前后frame,就会明白";
     
-    UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(0, 0, 0, 0);
-    label.text = text;
-    label.textColor = [UIColor blackColor];
-    label.font = [UIFont systemFontOfSize:14];
-    label.textAlignment = NSTextAlignmentLeft;
-    label.numberOfLines = 0;
-    [self.view addSubview:label];
+        UILabel *label = [[UILabel alloc] init];
+        label.frame = CGRectMake(0, 0, 0, 0);
+        label.text = text;
+        label.textColor = [UIColor blackColor];
+        label.font = [UIFont systemFontOfSize:14];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.numberOfLines = 0;
+        [self.view addSubview:label];
     
-    [label jh_widthIsEqualToView:self.view];
-    [label jh_topIs:20 fromBottomOfView:button3 updateHeight:NO];
-    [label jh_bottomIs:0 fromBottomOfView:self.view updateHeight:YES];
+        [label jh_widthIsEqualToView:self.view];
+        [label jh_topIs:0 fromBottomOfView:nextButton updateHeight:NO];
+        [label jh_bottomIs:0 fromBottomOfView:self.view updateHeight:YES];
+    
+        if (_second) {
+            label.hidden = YES;
+        }
     }
 
 }
@@ -137,7 +168,6 @@
     button1.titleLabel.textAlignment = 1;
     button1.backgroundColor = [UIColor lightGrayColor];
     [button1 setTitleColor:[UIColor blackColor] forState:0];
-    [button1 addTarget:self action:@selector(update1) forControlEvents:1<<6];
     [self.view addSubview:button1];
     return button1;
 }
@@ -212,6 +242,34 @@
         [_label jh_rightIs:-5 fromLeftOfView:_grayView updateWidth:YES];
     }];
     
+}
+
+- (void)goSecondVC
+{
+    Demo4ViewController *vc = [[Demo4ViewController alloc] init];
+    vc.second = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)update4
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [_label jh_centerXIs:-5 fromRightOfView:_grayView updateWidth:YES];
+    }];
+}
+
+- (void)update5
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [_label jh_centerXIs:-5 fromMiddleOfView:_grayView updateWidth:YES];
+    }];
+}
+
+- (void)update6
+{
+    [UIView animateWithDuration:.5 animations:^{
+        [_label jh_centerXIs:-5 fromLeftOfView:_grayView updateWidth:YES];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
