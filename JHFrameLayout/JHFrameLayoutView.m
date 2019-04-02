@@ -1055,7 +1055,7 @@ void *JHFrameLayoutViewSuperviewObserveContext = (void *)201811161;
 
 - (void)jh_layoutView:(UIView *)view
 {
-    if (view.jhLayout.layoutArray.count == 0) {
+    if (!view.isJhLayout) {
         return;
     }
     
@@ -1088,9 +1088,19 @@ void *JHFrameLayoutViewSuperviewObserveContext = (void *)201811161;
     if (!frame) {
         frame = [[JHLayout alloc] init];
         self.jhLayout = frame;
+        self.isJhLayout = YES;
         frame.layoutView = self;
     }
     return frame;
 }
+
+- (void)setIsJhLayout:(BOOL)isJhLayout{
+    objc_setAssociatedObject(self, @selector(isJhLayout), @(isJhLayout), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (BOOL)isJhLayout{
+    return [objc_getAssociatedObject(self, _cmd) boolValue];
+}
+
 
 @end

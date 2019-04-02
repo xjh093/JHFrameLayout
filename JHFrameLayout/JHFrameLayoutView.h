@@ -175,4 +175,5 @@ typedef JHLayout *(^JHLayoutMaxHeight)(CGFloat maxHeight);
 //!!!!:UIView (JHLayout)
 @interface UIView (JHLayout)
 @property (nonatomic,  strong) JHLayout *jhLayout;
+@property (nonatomic,  assign) BOOL  isJhLayout;
 @end

@@ -30,6 +30,9 @@
 		087B7ECE20BE3AD100B14DD1 /* Demo9ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ECD20BE3AD100B14DD1 /* Demo9ViewController.m */; };
 		087B7ED120BE3C0500B14DD1 /* Demo10ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */; };
 		087B7ED420BE3CD900B14DD1 /* Demo11ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */; };
+		181C4C6322535C4200046D1F /* JHAutoLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C4C6222535C4200046D1F /* JHAutoLayoutCell.m */; };
+		181C4C6A22536EEA00046D1F /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C4C6622536EEA00046D1F /* YYWeakProxy.m */; };
+		181C4C6B22536EEA00046D1F /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C4C6822536EEA00046D1F /* YYFPSLabel.m */; };
 		18C40FB221DF0EC300D0FA51 /* Demo17ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */; };
 		18C40FB521DF0ECA00D0FA51 /* Demo17ViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */; };
 		18CF1FD2219931E8004A9F4A /* Demo15ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF1FD1219931E8004A9F4A /* Demo15ViewController.m */; };
@@ -102,6 +105,12 @@
 		087B7ED020BE3C0500B14DD1 /* Demo10ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo10ViewController.m; sourceTree = "<group>"; };
 		087B7ED220BE3CD900B14DD1 /* Demo11ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo11ViewController.h; sourceTree = "<group>"; };
 		087B7ED320BE3CD900B14DD1 /* Demo11ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo11ViewController.m; sourceTree = "<group>"; };
+		181C4C6122535C4200046D1F /* JHAutoLayoutCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JHAutoLayoutCell.h; sourceTree = "<group>"; };
+		181C4C6222535C4200046D1F /* JHAutoLayoutCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JHAutoLayoutCell.m; sourceTree = "<group>"; };
+		181C4C6622536EEA00046D1F /* YYWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWeakProxy.m; sourceTree = "<group>"; };
+		181C4C6722536EEA00046D1F /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		181C4C6822536EEA00046D1F /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		181C4C6922536EEA00046D1F /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
 		18C40FB021DF0EC200D0FA51 /* Demo17ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo17ViewController.h; sourceTree = "<group>"; };
 		18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo17ViewController.m; sourceTree = "<group>"; };
 		18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo17ViewCell.m; sourceTree = "<group>"; };
@@ -166,6 +175,8 @@
 		087B7E4A20BCE33D00B14DD1 /* JHFrameLayoutDemo */ = {
 			isa = PBXGroup;
 			children = (
+				181C4C6522536EEA00046D1F /* YYFPSLabel */,
+				181C4C6422535C4600046D1F /* JHAutoLayoutCell */,
 				087B7EB320BCE85400B14DD1 /* JHUIViewControllerDecoupler */,
 				087B7E7D20BCE36900B14DD1 /* JHFrameLayout */,
 				087B7E4B20BCE33D00B14DD1 /* AppDelegate.h */,
@@ -279,6 +290,26 @@
 				087B7EB520BCE85400B14DD1 /* JHUIViewControllerDecoupler.m */,
 			);
 			path = JHUIViewControllerDecoupler;
+			sourceTree = "<group>";
+		};
+		181C4C6422535C4600046D1F /* JHAutoLayoutCell */ = {
+			isa = PBXGroup;
+			children = (
+				181C4C6122535C4200046D1F /* JHAutoLayoutCell.h */,
+				181C4C6222535C4200046D1F /* JHAutoLayoutCell.m */,
+			);
+			path = JHAutoLayoutCell;
+			sourceTree = "<group>";
+		};
+		181C4C6522536EEA00046D1F /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				181C4C6722536EEA00046D1F /* YYFPSLabel.h */,
+				181C4C6822536EEA00046D1F /* YYFPSLabel.m */,
+				181C4C6922536EEA00046D1F /* YYWeakProxy.h */,
+				181C4C6622536EEA00046D1F /* YYWeakProxy.m */,
+			);
+			path = YYFPSLabel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -414,6 +445,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				181C4C6B22536EEA00046D1F /* YYFPSLabel.m in Sources */,
+				181C4C6322535C4200046D1F /* JHAutoLayoutCell.m in Sources */,
 				087B7EAA20BCE6D300B14DD1 /* main.m in Sources */,
 				087B7ED420BE3CD900B14DD1 /* Demo11ViewController.m in Sources */,
 				087B7EB220BCE79300B14DD1 /* Demo1ViewController.m in Sources */,
@@ -433,6 +466,7 @@
 				087B7E8420BCE36900B14DD1 /* UIView+JHFrameLayout.m in Sources */,
 				087B7EB920BCF78100B14DD1 /* Demo2ViewController.m in Sources */,
 				087B7EC520BE348400B14DD1 /* Demo6ViewController.m in Sources */,
+				181C4C6A22536EEA00046D1F /* YYWeakProxy.m in Sources */,
 				18C40FB521DF0ECA00D0FA51 /* Demo17ViewCell.m in Sources */,
 				087B7E4D20BCE33D00B14DD1 /* AppDelegate.m in Sources */,
 				18F492B6219169E50031E021 /* Demo14ViewController.m in Sources */,

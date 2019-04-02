@@ -9,14 +9,11 @@
 
 @interface Demo17ViewCell()
 
-@property (nonatomic,  strong) JHFrameLayoutView *layoutView;
-
 @property (nonatomic,  strong) UIImageView *photo;
 @property (nonatomic,  strong) UILabel *nameLabel;
 @property (nonatomic,  strong) UILabel *timeLabel;
 @property (nonatomic,  strong) UILabel *contentLabel;
-
-@property (nonatomic,  assign) CGSize  size;
+@property (nonatomic,  strong) UILabel *contentLabel1;
 
 @end
 
@@ -24,24 +21,17 @@
 
 #pragma mark -------------------------------------视图-------------------------------------------
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self xjh_setupViews];
-    }
-    return self;
-}
-
-- (void)xjh_setupViews
+- (void)setupViews
 {
     [self.contentView addSubview:self.layoutView];
     [self.layoutView addSubview:self.photo];
     [self.layoutView addSubview:self.nameLabel];
     [self.layoutView addSubview:self.timeLabel];
     [self.layoutView addSubview:self.contentLabel];
+    [self.layoutView addSubview:self.contentLabel1];
     
-    _layoutView.jhLayout
-    .bottomOffsetBottomOfView(10, _contentLabel, YES);
+    self.layoutView.jhLayout
+    .bottomOffsetBottomOfView(10, _contentLabel1, YES);
     
     _photo.jhLayout
     .sizeIs(CGSizeMake(60, 60))
@@ -52,7 +42,7 @@
     .heightIs(16)
     .topIsEqualToView(_photo)
     .leftOffsetRightOfView(10, _photo, NO)
-    .rightOffsetRightOfView(-10, _layoutView, YES);
+    .rightOffsetRightOfView(-10, self.layoutView, YES);
     
     _timeLabel.jhLayout
     .heightIs(14)
@@ -65,7 +55,15 @@
     .leftIsEqualToView(_photo)
     .rightOffsetRightOfView(0, _nameLabel, YES)
     .autoHeight();
+    
+    _contentLabel1.jhLayout
+    .topOffsetBottomOfView(10, _contentLabel, NO)
+    .leftIsEqualToView(_contentLabel)
+    .rightOffsetRightOfView(0, _contentLabel, YES)
+    .autoHeight();
 
+    // Call this after layout finish
+    [self.layoutView layoutSubviews];
 }
 
 #pragma mark -------------------------------------事件-------------------------------------------
@@ -73,29 +71,10 @@
 - (void)configureWithText:(NSString *)text
 {
     _contentLabel.text = text;
-}
-
-- (CGSize)systemLayoutSizeFittingSize:(CGSize)targetSize withHorizontalFittingPriority:(UILayoutPriority)horizontalFittingPriority verticalFittingPriority:(UILayoutPriority)verticalFittingPriority
-{
-    CGSize size = [_layoutView sizeThatFits:targetSize];
-    NSLog(@"systemLayoutSizeFittingSize:%@",NSStringFromCGSize(size));
-    if (_size.height != size.height) {
-        _size = size;
-    }
-    return _size;
+    _contentLabel1.text = text;
 }
 
 #pragma mark -------------------------------------懒加载-----------------------------------------
-
-- (JHFrameLayoutView *)layoutView{
-    if (!_layoutView) {
-        JHFrameLayoutView *view = [[JHFrameLayoutView alloc] init];
-        view.frame = CGRectMake(0, 0, CGRectGetWidth([UIScreen mainScreen].bounds), 0);
-        view.backgroundColor = [UIColor clearColor];
-        _layoutView = view;
-    }
-    return _layoutView;
-}
 
 - (UIImageView *)photo{
     if (!_photo) {
@@ -141,6 +120,19 @@
         _contentLabel = label;
     }
     return _contentLabel;
+}
+
+- (UILabel *)contentLabel1{
+    if (!_contentLabel1) {
+        UILabel *label = [[UILabel alloc] init];
+        label.text = @"";
+        label.textColor = [UIColor blackColor];
+        label.font = [UIFont systemFontOfSize:16];
+        label.textAlignment = NSTextAlignmentLeft;
+        label.numberOfLines = 0;
+        _contentLabel1 = label;
+    }
+    return _contentLabel1;
 }
 
 @end
