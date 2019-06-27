@@ -33,6 +33,7 @@
 		181C4C6322535C4200046D1F /* JHAutoLayoutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C4C6222535C4200046D1F /* JHAutoLayoutCell.m */; };
 		181C4C6A22536EEA00046D1F /* YYWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C4C6622536EEA00046D1F /* YYWeakProxy.m */; };
 		181C4C6B22536EEA00046D1F /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 181C4C6822536EEA00046D1F /* YYFPSLabel.m */; };
+		1868AE0022C38F9C0018C67D /* Demo18ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868ADFF22C38F9C0018C67D /* Demo18ViewController.m */; };
 		18C40FB221DF0EC300D0FA51 /* Demo17ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */; };
 		18C40FB521DF0ECA00D0FA51 /* Demo17ViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */; };
 		18CF1FD2219931E8004A9F4A /* Demo15ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18CF1FD1219931E8004A9F4A /* Demo15ViewController.m */; };
@@ -111,6 +112,8 @@
 		181C4C6722536EEA00046D1F /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
 		181C4C6822536EEA00046D1F /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
 		181C4C6922536EEA00046D1F /* YYWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWeakProxy.h; sourceTree = "<group>"; };
+		1868ADFE22C38F9C0018C67D /* Demo18ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo18ViewController.h; sourceTree = "<group>"; };
+		1868ADFF22C38F9C0018C67D /* Demo18ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo18ViewController.m; sourceTree = "<group>"; };
 		18C40FB021DF0EC200D0FA51 /* Demo17ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo17ViewController.h; sourceTree = "<group>"; };
 		18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo17ViewController.m; sourceTree = "<group>"; };
 		18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo17ViewCell.m; sourceTree = "<group>"; };
@@ -279,6 +282,8 @@
 				18C40FB121DF0EC200D0FA51 /* Demo17ViewController.m */,
 				18C40FB421DF0EC900D0FA51 /* Demo17ViewCell.h */,
 				18C40FB321DF0EC900D0FA51 /* Demo17ViewCell.m */,
+				1868ADFE22C38F9C0018C67D /* Demo18ViewController.h */,
+				1868ADFF22C38F9C0018C67D /* Demo18ViewController.m */,
 			);
 			path = DemoVC;
 			sourceTree = "<group>";
@@ -451,6 +456,7 @@
 				087B7ED420BE3CD900B14DD1 /* Demo11ViewController.m in Sources */,
 				087B7EB220BCE79300B14DD1 /* Demo1ViewController.m in Sources */,
 				087B7EBF20BD646000B14DD1 /* Demo4ViewController.m in Sources */,
+				1868AE0022C38F9C0018C67D /* Demo18ViewController.m in Sources */,
 				18CF1FD2219931E8004A9F4A /* Demo15ViewController.m in Sources */,
 				087B7EC820BE37B500B14DD1 /* Demo7ViewController.m in Sources */,
 				087B7E8320BCE36900B14DD1 /* JHFrameLayoutView.m in Sources */,

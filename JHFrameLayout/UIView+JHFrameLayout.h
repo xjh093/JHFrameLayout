@@ -34,10 +34,16 @@
 #pragma mark --- size, center, origin
 - (void)jh_sizeIs:(CGSize)size;
 - (void)jh_sizeIsEqualToView:(UIView *)view;
+
 - (void)jh_centerIs:(CGPoint)center;
 - (void)jh_centerIsEqualToView:(UIView *)view;
+/// if `flag` is `YES`, it means `self` and `view` is not brother view, self.superview is not equal to view.superview.
+- (void)jh_centerIsEqualToView:(UIView *)view crossLevel:(BOOL)flag;
+
 - (void)jh_originIs:(CGPoint)origin;
 - (void)jh_originISEqualToView:(UIView *)view;
+/// if `flag` is `YES`, it means `self` and `view` is not brother view, self.superview is not equal to view.superview.
+- (void)jh_originISEqualToView:(UIView *)view crossLevel:(BOOL)flag;
 
 #pragma mark --- edge
 - (void)jh_edgeIs:(CGFloat)padding;

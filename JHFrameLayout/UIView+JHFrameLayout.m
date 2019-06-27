@@ -62,10 +62,19 @@ static CGFloat _JHFrameLayoutScale;
 }
 
 - (void)jh_centerIsEqualToView:(UIView *)view{
-    if (self.superview == view) {
-        [self jh_centerIs:CGPointMake(CGRectGetWidth(view.frame)*0.5, CGRectGetHeight(view.frame)*0.5)];
+    [self jh_centerIsEqualToView:view crossLevel:NO];
+}
+
+- (void)jh_centerIsEqualToView:(UIView *)view crossLevel:(BOOL)flag{
+    if (flag) {
+        [self jh_centerXIs:0 fromMiddleOfView:view];
+        [self jh_centerYIs:0 fromMiddleOfView:view];
     }else{
-        [self jh_centerIs:view.center];
+        if (self.superview == view) {
+            [self jh_centerIs:CGPointMake(CGRectGetWidth(view.frame)*0.5, CGRectGetHeight(view.frame)*0.5)];
+        }else{
+            [self jh_centerIs:view.center];
+        }
     }
 }
 
@@ -78,7 +87,16 @@ static CGFloat _JHFrameLayoutScale;
 }
 
 - (void)jh_originISEqualToView:(UIView *)view{
-    [self jh_originIs:view.frame.origin];
+    [self jh_originISEqualToView:view crossLevel:NO];
+}
+
+- (void)jh_originISEqualToView:(UIView *)view crossLevel:(BOOL)flag{
+    if (flag) {
+        [self jh_topIs:0 fromTopOfView:view];
+        [self jh_leftIs:0 fromLeftOfView:view];
+    }else{
+        [self jh_originIs:view.frame.origin];
+    }
 }
 
 #pragma mark --- edge
