@@ -1,5 +1,13 @@
 # Logs
 
+### 2019-6-27
+- add methods.
+    - jh_centerIsEqualToView:crossLevel:
+    - jh_originISEqualToView:crossLevel:
+
+### 2019-4-2
+- add demo: autolayout cell demo.
+
 ### 2019-1-4
 - fix bugs about 'updateWidth' and 'updateHeight'.
 - update Demo.
