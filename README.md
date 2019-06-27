@@ -5,7 +5,7 @@ A light weight autolayout framework.
 
 # Version
 Latest release version: 
-- [2.5.3](https://github.com/xjh093/JHFrameLayout/releases)
+- [2.5.5](https://github.com/xjh093/JHFrameLayout/releases)
 
 ---
 
