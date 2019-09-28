@@ -221,7 +221,7 @@ typedef void(^JHLayoutBlock)(void);
         __weak typeof(self) ws = self;
         UIView *wkview = view;
         JHLayoutBlock block = ^(){
-            [ws.layoutView jh_originISEqualToView:wkview];
+            [ws.layoutView jh_originIsEqualToView:wkview];
         };
         [self.layoutArray addObject:block];
         
