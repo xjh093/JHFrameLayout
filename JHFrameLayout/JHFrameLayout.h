@@ -6,6 +6,9 @@
 //  Copyright © 2018年 HaoCold. All rights reserved.
 //
 
+// V2.5.6
+// https://github.com/xjh093/JHFrameLayout
+
 #ifndef JHFrameLayout_h
 #define JHFrameLayout_h
 

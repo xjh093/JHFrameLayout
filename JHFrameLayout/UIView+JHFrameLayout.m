@@ -86,11 +86,11 @@ static CGFloat _JHFrameLayoutScale;
     self.frame = frame;
 }
 
-- (void)jh_originISEqualToView:(UIView *)view{
-    [self jh_originISEqualToView:view crossLevel:NO];
+- (void)jh_originIsEqualToView:(UIView *)view{
+    [self jh_originIsEqualToView:view crossLevel:NO];
 }
 
-- (void)jh_originISEqualToView:(UIView *)view crossLevel:(BOOL)flag{
+- (void)jh_originIsEqualToView:(UIView *)view crossLevel:(BOOL)flag{
     if (flag) {
         [self jh_topIs:0 fromTopOfView:view];
         [self jh_leftIs:0 fromLeftOfView:view];
