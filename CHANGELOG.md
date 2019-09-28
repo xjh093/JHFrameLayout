@@ -1,5 +1,9 @@
 # Logs
 
+### 2019-9-28
+- fix spelling mistake.
+    - jh_originIsEqualToView:crossLevel:
+
 ### 2019-6-27
 - add methods.
     - jh_centerIsEqualToView:crossLevel:
